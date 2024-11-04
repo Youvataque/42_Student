@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/04 14:44:59 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/04 14:36:54 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/04 14:45:54 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <sys/types.h>
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
 
-/* ctype func */
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-
-#endif
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}

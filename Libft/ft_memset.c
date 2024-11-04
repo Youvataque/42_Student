@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/04 14:44:59 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/04 14:46:41 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/04 15:07:48 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <sys/types.h>
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
 
-/* ctype func */
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-
-#endif
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)b)[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}
