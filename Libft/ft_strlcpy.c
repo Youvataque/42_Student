@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/04 17:23:52 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/04 17:17:46 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/04 17:24:11 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <sys/types.h>
+///////////////////////////////////////////////////////////////////
+// Main func
+size_t	ft_strlcpy(char *dest, const char *src, size_t dst_size)
+{
+	size_t	i;
+	size_t	l;
 
-/* ctype func */
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
-
-size_t	ft_strlen(const char *str);
-
-#endif
+	i = 0;
+	l = ft_strlen(src);
+	if (dst_size == 0)
+	{
+		return (l);
+	}
+	while (src[i] != '\0' && i < dst_size - 1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	if (dst_size > 0)
+	{
+		dest[i] = '\0';
+	}
+	return (l);
+}
