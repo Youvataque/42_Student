@@ -6,13 +6,13 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:13:15 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 12:11:58 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/05 21:36:51 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	strlcat(char *dst, const char *src, size_t dst_size)
+size_t	ft_strlcat(char *dst, const char *src, size_t dst_size)
 {
 	size_t	src_size;
 	size_t	real_dest_size;

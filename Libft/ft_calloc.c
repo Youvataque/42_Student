@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:50:24 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 19:02:37 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/05 21:42:56 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_calloc(size_t count, size_t size)
 	if (!result)
 		return (NULL);
 	i = 0;
-	while(i < count * size)
+	while (i < count * size)
 	{
 		((unsigned char *)result)[i] = 0;
 		i++;

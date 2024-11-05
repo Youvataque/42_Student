@@ -6,11 +6,11 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:12:47 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 15:14:46 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/05 21:35:07 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_lower(int c)
+int	ft_tolower(int c)
 {
 	{
 		if (c >= 'A' && c <= 'Z')

@@ -6,5 +6,6 @@
 		"libft.h": "c",
 		"ft_strnstr.C": "cpp",
 		"ft_atoi.C": "cpp"
-	}
+	},
+	"makefile.configureOnOpen": true
 }
