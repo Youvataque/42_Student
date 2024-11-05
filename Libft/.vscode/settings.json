@@ -3,6 +3,8 @@
 		"ft_isalpha.C": "cpp",
 		"ft_isdigit.C": "cpp",
 		"memset.C": "cpp",
-		"libft.h": "c"
+		"libft.h": "c",
+		"ft_strnstr.C": "cpp",
+		"ft_atoi.C": "cpp"
 	}
 }

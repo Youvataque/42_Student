@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.C                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 12:17:34 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 16:24:33 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/05 16:52:39 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/05 17:44:52 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-char	*ft_strchr(const char *s, int c)
+int ft_atoi(const char *str)
 {
 	int	i;
+	int	result;
+	int	sign;
 
 	i = 0;
-	while (s[i] != '\0')
+	result = 0;
+	sign = 1;
+	while((str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)) && str[i])
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	if (c == '\0')
-		return ((char *)&s[i]);
-	return (NULL);
+	while ((str[i] <= 57 && str[i] >= 48) && str[i])
+	{
+		result = result * 10 + (str[i] - 48);
+		i++;
+	}
+	return (result * sign);
 }
