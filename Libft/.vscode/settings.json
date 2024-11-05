@@ -2,6 +2,7 @@
 	"files.associations": {
 		"ft_isalpha.C": "cpp",
 		"ft_isdigit.C": "cpp",
-		"memset.C": "cpp"
+		"memset.C": "cpp",
+		"libft.h": "c"
 	}
 }

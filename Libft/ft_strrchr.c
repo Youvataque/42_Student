@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 15:07:51 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/05 15:12:36 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/05 15:14:35 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <sys/types.h>
-# include <stddef.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int		i;
+	char	*result;
 
-/* ctype func */
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
-size_t	ft_strlen(const char *str);
-
-#endif
+	i = 0;
+	result = NULL;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			result = ((char *)&s[i]);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)&s[i]);
+	return (result);
+}
