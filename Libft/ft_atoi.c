@@ -6,12 +6,13 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:52:39 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 17:55:31 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:56:40 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
+/////////////////////////////////////////////////////////////////////////////
 // Converts a string to an integer
 int	ft_atoi(const char *str)
 {
