@@ -6,12 +6,14 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:00:29 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/04 14:06:35 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:55:00 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// check if char is alphanum
 int	ft_isalnum(int c)
 {
 	if (ft_isalpha(c) == 1 || ft_isdigit(c) == 1)

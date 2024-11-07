@@ -6,12 +6,14 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:17:34 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 16:24:33 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:50:54 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// return a pointer to the first occurrence of c in s
 char	*ft_strchr(const char *s, int c)
 {
 	int	i;

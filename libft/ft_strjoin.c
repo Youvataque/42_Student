@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 14:46:41 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 17:51:09 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/07 14:03:08 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/07 17:41:35 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 /////////////////////////////////////////////////////////////////////////////
-// fill memory with a constant byte
-void	*ft_memset(void *b, int c, size_t len)
+// combined two str in one
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	size_t	i;
+	char		*result;
+	size_t		i;
+	size_t		j;
+	size_t		len;
 
 	i = 0;
-	while (i < len)
+	j = 0;
+	len = ft_strlen(s1) + ft_strlen(s2);
+	result = malloc((len + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	while (i < ft_strlen(s1))
 	{
-		((unsigned char *)b)[i] = (unsigned char)c;
+		result[i] = s1[i];
 		i++;
 	}
-	return (b);
+	while (i < len)
+	{
+		result[i] = s2[j];
+		i++;
+		j++;
+	}
+	return (result);
 }

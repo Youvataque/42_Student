@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_substr.C                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 18:29:10 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 17:50:15 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/07 12:48:16 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/07 14:46:33 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-/////////////////////////////////////////////////////////////////////////////
-// duplicate str in memory and return pointer to the copy
-char	*ft_strdup(const char *s1)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	char	*tab;
-	int		i;
+	size_t		i;
+	char		*result;
 
-	i = 0;
-	tab = malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!tab)
+	if (!s)
 		return (NULL);
-	while (s1[i])
+	if (start >= (unsigned int)ft_strlen(s))
+		return (ft_strdup(""));
+	result = malloc((len + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (i < len && s[i])
 	{
-		tab[i] = s1[i];
+		result[i] = s[start + i];
 		i++;
 	}
-	tab[i] = '\0';
-	return (tab);
+	result[i] = '\0';
+	return (result);
 }
+/*
+#include "stdio.h"
+
+int main()
+{
+	printf("%s", ft_substr("coucou vous", 7, 4));
+	return 0;
+} */

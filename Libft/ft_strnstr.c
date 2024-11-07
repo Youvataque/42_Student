@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.C                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:27:29 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 21:37:04 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:40:08 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// Finds the first occurrence of a substring within a string up to a specified length.
 char	*is_in(const char *haystack, const char *needle, size_t i, size_t len)
 {
 	size_t	j;
@@ -27,6 +29,8 @@ char	*is_in(const char *haystack, const char *needle, size_t i, size_t len)
 	return ((char *)&haystack[i - j]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+// Finds the first occurrence of needle in haystack within len characters.
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;

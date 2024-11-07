@@ -6,12 +6,14 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:38:09 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/05 21:42:32 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:51:24 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// move memory area
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char		*temp_dst;

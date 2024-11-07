@@ -6,12 +6,14 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:36:54 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/04 14:45:54 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:40:28 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// return the length of str
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
