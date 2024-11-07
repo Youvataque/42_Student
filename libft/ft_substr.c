@@ -6,13 +6,15 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 14:46:33 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 19:45:30 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
+/////////////////////////////////////////////////////////////////////////////
+// Extracts a substring from a string starting at a given index.
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t		i;

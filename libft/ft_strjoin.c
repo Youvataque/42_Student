@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
 /////////////////////////////////////////////////////////////////////////////
-// combined two str in one
+// combine two str in one
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char		*result;
