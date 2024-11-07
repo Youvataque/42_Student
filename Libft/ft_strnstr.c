@@ -6,14 +6,14 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:27:29 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 17:40:08 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/07 18:49:16 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /////////////////////////////////////////////////////////////////////////////
-// Finds the first occurrence of a substring within a string up to a specified length.
+// Finds the first occurrence of a substring 
 char	*is_in(const char *haystack, const char *needle, size_t i, size_t len)
 {
 	size_t	j;
