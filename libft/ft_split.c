@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:15:04 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 18:48:45 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/08 10:54:36 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,10 @@ char	**ft_split(const char *s, char c)
 {
 	char		**result;
 	size_t		i_j_k[3];
-	int			word_count;
 
 	i_j_k[0] = 0;
 	i_j_k[1] = 0;
 	i_j_k[2] = 0;
-	word_count = 0;
 	result = malloc(sizeof(char *) * (nb_of_str(s, c) + 1));
 	if (!result)
 		return (NULL);
