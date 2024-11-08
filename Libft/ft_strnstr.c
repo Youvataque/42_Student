@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:27:29 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 11:15:48 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/08 12:28:23 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		needle_len++;
 	if (needle_len == 0)
 		return ((char *)haystack);
-	while (i + needle_len <= len && haystack[i]) 
+	while (i + needle_len <= len && haystack[i])
 	{
 		if (haystack[i] == needle[0])
 		{

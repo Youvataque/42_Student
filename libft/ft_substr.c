@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.C                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 10:15:54 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/08 12:14:34 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
 /////////////////////////////////////////////////////////////////////////////
-// Extracts a substring from a string starting at a given index.
+// Extracts a substring from a string starting at a given index to len.
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t		i;
@@ -24,7 +24,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
 		return (ft_strdup(""));
-	result = (char *)malloc((len + 1) * sizeof(char));
+	if (len <= ft_strlen(s))
+		result = (char *)malloc((len + 1) * sizeof(char));
+	else
+		result = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;

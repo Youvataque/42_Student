@@ -6,13 +6,15 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:29:00 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 10:42:47 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/08 12:50:24 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "unistd.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// print a char
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);

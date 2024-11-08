@@ -6,13 +6,15 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:31:35 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 10:42:14 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/08 12:51:15 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
+/////////////////////////////////////////////////////////////////////////////
+// print str on selected fd
 void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
