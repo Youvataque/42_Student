@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:15:04 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 10:54:36 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/08 19:09:03 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ char	**ft_split(const char *s, char c)
 			i_j_k[2]++;
 		}
 	}
+	result[i_j_k[2]] = NULL;
 	return (result);
 }

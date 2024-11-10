@@ -5,7 +5,10 @@
 		"memset.C": "cpp",
 		"libft.h": "c",
 		"ft_strnstr.C": "cpp",
-		"ft_atoi.C": "cpp"
+		"ft_atoi.C": "cpp",
+		"ft_substr.C": "cpp",
+		"__locale": "c",
+		"stdlib.h": "c"
 	},
 	"makefile.configureOnOpen": true
 }

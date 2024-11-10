@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 10:02:17 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 19:10:42 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/08 17:56:54 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/08 18:59:02 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-////////////////////////////////////////////////////////////////
-// create new string with function f operation for all index
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+/////////////////////////////////////////////////////////////////////////////
+// clean one link and all next link
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char	*result;
-	size_t	i;
+	t_list	*next_clean;
 
-	i = 0;
-	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!result)
-		return (NULL);
-	while (s[i])
+	while (*lst != NULL)
 	{
-		result[i] = f((unsigned int)i, s[i]);
-		i++;
+		next_clean = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = next_clean;
 	}
-	result[i] = '\0';
-	return (result);
+	*lst = NULL;
 }

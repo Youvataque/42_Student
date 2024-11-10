@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 10:02:17 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 19:10:42 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/08 18:11:18 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/08 18:30:20 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-////////////////////////////////////////////////////////////////
-// create new string with function f operation for all index
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void(*del)(void *))
 {
-	char	*result;
-	size_t	i;
+	t_list	*result;
+	t_list	*new_link;
+	void	*new_element;	
 
-	i = 0;
-	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!result)
-		return (NULL);
-	while (s[i])
+	result = NULL;
+	while (lst != NULL)
 	{
-		result[i] = f((unsigned int)i, s[i]);
-		i++;
+		new_element = f(lst->content);
+		if (new_element == NULL)
+		{
+			ft_lstclear(&result, del);
+			return (NULL);
+		}
+		new_link = ft_lstnew(new_element);
+		if (new_link == NULL)
+		{
+			ft_lstclear(&result, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&result, new_link);
+		lst = lst->next;
 	}
-	result[i] = '\0';
 	return (result);
 }

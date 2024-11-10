@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 10:02:17 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 19:10:42 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/08 17:27:42 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/08 18:06:38 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-////////////////////////////////////////////////////////////////
-// create new string with function f operation for all index
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+/////////////////////////////////////////////////////////////////////////////
+// add new link at the start of lst
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char	*result;
-	size_t	i;
-
-	i = 0;
-	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!result)
-		return (NULL);
-	while (s[i])
+	if (new != NULL)
 	{
-		result[i] = f((unsigned int)i, s[i]);
-		i++;
+		new->next = *lst;
+		*lst = new;
 	}
-	result[i] = '\0';
-	return (result);
 }

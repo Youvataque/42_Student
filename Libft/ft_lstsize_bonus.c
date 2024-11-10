@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 10:02:17 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/08 19:10:42 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/08 17:36:16 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/08 18:34:35 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-////////////////////////////////////////////////////////////////
-// create new string with function f operation for all index
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+/////////////////////////////////////////////////////////////////////////////
+// return the length of lst
+int	ft_lstsize(t_list *lst)
 {
-	char	*result;
-	size_t	i;
+	int		result;
 
-	i = 0;
-	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!result)
-		return (NULL);
-	while (s[i])
+	result = 0;
+	while (lst != NULL)
 	{
-		result[i] = f((unsigned int)i, s[i]);
-		i++;
+		lst = lst->next;
+		result++;
 	}
-	result[i] = '\0';
 	return (result);
 }
