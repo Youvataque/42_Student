@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:38:09 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/07 17:51:24 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/11 21:50:13 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,22 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char		*temp_dst;
 	const unsigned char	*temp_src;
-	size_t				i;
 
+	if ((dst == NULL && src == NULL) && len != 0)
+		return (NULL);
 	temp_dst = (unsigned char *)dst;
 	temp_src = (const unsigned char *)src;
-	i = 0;
-	if (temp_dst < temp_src && len != 0)
+	if (temp_dst < temp_src)
 	{
-		while (i < len)
-		{
-			temp_dst[i] = temp_src[i];
-			i++;
-		}
+		while (len--)
+			*temp_dst++ = *temp_src++;
 	}
-	else if (temp_dst > temp_src && len != 0)
+	else
 	{
-		while (i < len)
-		{
-			temp_dst[len - 1 - i] = temp_src[len - 1 - i];
-			i++;
-		}
+		temp_dst += len;
+		temp_src += len;
+		while (len--)
+			*--temp_dst = *--temp_src;
 	}
 	return (dst);
 }
