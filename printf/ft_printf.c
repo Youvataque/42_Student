@@ -6,59 +6,60 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:52:36 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/12 21:15:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/15 11:30:39 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stdarg.h"
-#include "libft/libft.h"
+#include "ft_printf.h"
 
-void	selector(const char **str, va_list args)
+void	selector(const char **str, va_list *args, size_t *c)
 {
+	int	temp;
+
 	if (**str == 'c')
-		return (ft_putchar_fd((char)va_arg(args, int), 1), (*str)++, (void)0);
+		return (ft_putchar_fd((char)va_arg(*args, int), 1), (*str)++, (*c)++, (void)0);
 	else if (**str == 's')
-		return (ft_putstr_fd(va_arg(args, char *), 1), (*str)++, (void)0);
+		return ((*c) += ft_putstr_fd_count((char *)va_arg(*args, char *), 1), (*str)++, (void)0);
 	else if (**str == 'p')
-	{}
+		return ((*c) += ft_put_add((void *)va_arg(*args, char *), 1), (*str)++, (void)0);
 	else if (**str == 'd')
-		return (ft_putnbr_fd((int)va_arg(args, int), 1), (*str)++, (void)0);
+		return (temp = (int)va_arg(*args, int),
+			ft_putnbr_fd(temp, 1), (*c) += ft_count_digits(temp), (*str)++, (void)0);
 	else if (**str == 'i')
-		return (ft_putnbr_fd((int)va_arg(args, int), 1), (*str)++, (void)0);
+		return (temp = (int)va_arg(*args, int),
+			ft_putnbr_fd(temp, 1), (*c) += ft_count_digits(temp), (*str)++, (void)0);
 	else if (**str == 'u')
-	{}
+		return (ft_putchar_fd('%', 1), (*str)++, (*c)++, (void)0);
 	else if (**str == 'x')
-	{}
+		return (ft_putchar_fd('%', 1), (*str)++, (*c)++, (void)0);
 	else if (**str == 'X')
-	{}
+		return (ft_putchar_fd('%', 1), (*str)++, (*c)++, (void)0);
 	else if (**str == '%')
-		return (ft_putchar_fd('%', 1), (*str)++, (void)0);
+		return (ft_putchar_fd('%', 1), (*str)++, (*c)++, (void)0);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-    va_list args;
+	va_list	args;
+	size_t	count;
 
-    va_start(args, str);
-    while (*str)
+	count = 0;
+	va_start(args, str);
+	while (*str)
 	{
 		if (*str == '%')
 		{
 			str++;
-			selector(&str, args);
+			selector(&str, &args, &count);
 		}
 		else
 		{
 			ft_putchar_fd(*str, 1);
 			str++;
+			count++;
 		}
 	}
-    va_end(args);
-    return (0);
-}
-
-int main()
-{
-    ft_printf("test str : %s puis int : %d", "voyons", 12);
-    return (0);
+	va_end(args);
+	return (count);
 }
