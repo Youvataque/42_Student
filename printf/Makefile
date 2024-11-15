@@ -1,7 +1,7 @@
 NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = ft_put_add.c ft_printf.c ft_tools.c ft_putstr_fd_count.c
+SRC = ft_put_add.c ft_printf.c ft_tools.c ft_putstr_fd_count.c ft_putnbr_unsi.c ft_puthex_fd.c
 OBJ = $(SRC:.c=.o)
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:26:35 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/15 11:29:00 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/15 15:20:21 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // count nomber of required char for print int
-int	ft_count_digits(int n)
+int	ft_count_digits(int n, int base)
 {
 	int	count;
 
@@ -30,6 +30,23 @@ int	ft_count_digits(int n)
 	}
 	while (n != 0)
 	{
+		n /= base;
+		count++;
+	}
+	return (count);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// count nomber of required char for print unsigned long
+int	ft_count_digits_plus(unsigned int n)
+{
+	unsigned int	count;
+
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
 		n /= 10;
 		count++;
 	}
@@ -38,7 +55,7 @@ int	ft_count_digits(int n)
 
 /////////////////////////////////////////////////////////////////////////////
 // count nomber of required char for print unsigned long
-int	ft_count_digits_plus(unsigned long n)
+int	ft_count_digits_hex(unsigned long n)
 {
 	unsigned long	count;
 
@@ -55,14 +72,13 @@ int	ft_count_digits_plus(unsigned long n)
 
 /////////////////////////////////////////////////////////////////////////////
 // convert unsigned long into hex str 
-char	*ft_itoa_plus(unsigned long n)
+char	*ft_itoa_plus(unsigned long n, char *base)
 {
 	char			*result;
 	unsigned long	len;
-	const char		*base = "0123456789abcdef";
 
-	len = ft_count_digits_plus(n);
-	result = malloc(sizeof(char) * (len + 3));
+	len = ft_count_digits_hex(n);
+	result = malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
 	result[len] = '\0';

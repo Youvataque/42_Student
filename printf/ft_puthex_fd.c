@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_count.c                               :+:      :+:    :+:   */
+/*   ft_puthex_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 10:31:35 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/15 15:18:36 by yseguin          ###   ########.fr       */
+/*   Created: 2024/11/15 11:49:10 by yseguin           #+#    #+#             */
+/*   Updated: 2024/11/15 15:38:03 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
 /////////////////////////////////////////////////////////////////////////////
-// print str on selected fd
-int	ft_putstr_fd_count(char *s, int fd)
+// print unsigned int into hex
+int	ft_puthex_fd(unsigned int number, char *base)
 {
-	size_t	i;
+	char	*temp;
+	int		i;
 
-	i = 0;
-	if (!s)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	while (i < ft_strlen(s))
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	temp = ft_itoa_plus(number, base);
+	i = ft_putstr_fd_count(temp, 1);
+	free(temp);
 	return (i);
 }
