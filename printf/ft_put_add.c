@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:30:49 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/15 11:47:53 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/19 16:25:49 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	ft_put_add(void	*pointer, int fd)
 	char			*temp;
 	unsigned long	i;
 
+	if (!pointer)
+	{
+		ft_putstr_fd("(nil)", fd);
+		return (5);
+	}
 	temp = ft_itoa_plus((unsigned long)pointer, "0123456789abcdef");
 	ft_putchar_fd('0', fd);
 	ft_putchar_fd('x', fd);
