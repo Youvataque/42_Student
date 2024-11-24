@@ -6,13 +6,13 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:44:53 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/24 15:02:33 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/24 17:24:26 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // return the length of str
 size_t	ft_strlen(const char *str)
 {
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // combine two str in one
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -54,7 +54,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // return a pointer to the first occurrence of c in s
 char	*ft_strchr(const char *s, int c)
 {
@@ -72,7 +72,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // Extracts a substring from a string starting at a given index to len.
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
@@ -100,7 +100,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	return (result);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // duplicate str in memory and return pointer to the copy
 char	*ft_strdup(const char *s1)
 {
