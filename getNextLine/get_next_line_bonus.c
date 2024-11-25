@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:37:42 by yseguin           #+#    #+#             */
-/*   Updated: 2024/11/25 12:04:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/11/25 12:02:04 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // merge temp and buffer, clean old data and return result of merge
@@ -89,14 +89,14 @@ void	ft_filter(char **temp, char **line)
 // something in the file
 char	*get_next_line(int fd)
 {
-	static char	*temp = NULL;
+	static char	*temp[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	temp = ft_read(fd, temp);
-	if (!temp)
+	temp[fd] = ft_read(fd, temp[fd]);
+	if (!(temp[fd]))
 		return (NULL);
-	ft_filter(&temp, &line);
+	ft_filter(&(temp[fd]), &line);
 	return (line);
 }
