@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"ft_isalpha.C": "cpp",
+		"ft_isdigit.C": "cpp",
+		"memset.C": "cpp",
+		"libft.h": "c",
+		"ft_strnstr.C": "cpp",
+		"ft_atoi.C": "cpp",
+		"ft_substr.C": "cpp",
+		"__locale": "c",
+		"stdlib.h": "c"
+	},
+	"makefile.configureOnOpen": true
+}
