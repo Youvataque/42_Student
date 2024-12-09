@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c
+SRC = main.c utils.c tools/s_tools.c tools/p_tools.c tools/r_tools.c tools/rr_tools.c
 OBJ = $(SRC:.c=.o)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

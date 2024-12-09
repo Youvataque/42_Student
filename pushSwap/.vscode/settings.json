@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"push_swap.C": "cpp",
-		"pushswap_lib.h": "c"
+		"pushswap_lib.h": "c",
+		"swaplib.h": "c"
 	}
 }
