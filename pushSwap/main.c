@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/09 09:19:20 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:57:46 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,20 @@ int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
-	
+
 	if (argc > 1)
 	{
 		a = init_list(argc, argv);
-		if (a == NULL) {
+		if (a == NULL)
+		{
 			ft_putstr_fd("Error\n", 1);
 			return (1);
 		}
 		b = NULL;
-		pb(&a, &b);
-		pb(&a, &b);
-		rra(&a);
-		ft_putstr_fd("\n////////////////\n", 1);
-		while (a != NULL) {
-			ft_printf("%d\n", *(int *)a->content);
-			a = a->next;
-		}
-		ft_putstr_fd("\n////////////////\n", 1);
-		while (b != NULL) {
-			ft_printf("%d\n", *(int *)b->content);
-			b = b->next;
-		}
+		if (ft_lstsize(a) == 2)
+			sort_two(a);
+		else
+			insertion(&a, &b);
 	}
 	else
 		return (1);

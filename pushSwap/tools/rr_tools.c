@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 15:15:18 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/09 09:29:57 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:57:19 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	r_rotate(t_list **lst)
 
 	if (*lst == NULL || (*lst)->next == NULL)
 		return ;
-
 	second_last = *lst;
 	while (second_last->next->next)
 		second_last = second_last->next;
