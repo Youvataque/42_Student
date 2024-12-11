@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:29:38 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/08 15:08:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/11 21:05:10 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,50 @@ int	ft_lstcontain(t_list *lst, void *content)
 		lst = lst->next;
 	}
 	return (0);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// check if lst is sorted or not 
+int is_sorted(t_list *lst)
+{
+	if (ft_lstsize(lst) == 1)
+		return (1);
+	while (lst && lst->next)
+	{
+		if (*(int *)lst->content > *(int *)lst->next->content)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// return tab that contain min and max of lst
+int	*min_max(t_list *lst)
+{
+	int	*result;
+	int	index;
+
+	index = 0;
+	result = malloc(sizeof(int) * 4);
+	result[0] = INT32_MAX;
+	result[1] = INT32_MIN;
+	result[2] = 0;
+	result[3] = 0;
+	while (lst)
+	{
+		if (*(int *)lst->content < result[0])
+		{
+			result[0] = *(int *)lst->content;
+			result[2] = index;
+		}
+		if (*(int *)lst->content > result[1])
+		{
+			result[1] = *(int *)lst->content;
+			result[3] = index;
+		}
+		lst = lst->next;
+		index++;
+	}
+	return (result);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_two_insert.c                                  :+:      :+:    :+:   */
+/*   sort_two_select.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:46:05 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/09 12:55:33 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/11 17:40:20 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sort_two(t_list *a)
 		sa(a);
 }
 
-void	insert_pickmin(t_list **a, int *min, int *index)
+void	select_pickmin(t_list **a, int *min, int *index)
 {
 	int				i;
 	t_list			*temp;
@@ -37,7 +37,7 @@ void	insert_pickmin(t_list **a, int *min, int *index)
 	}
 }
 
-void	insert_rotate(t_list **a, int min, int index, int size)
+void	select_rotate(t_list **a, int min, int index, int size)
 {
 	if (index <= size / 2)
 	{
@@ -51,19 +51,21 @@ void	insert_rotate(t_list **a, int min, int index, int size)
 	}
 }
 
-void	insertion(t_list **a, t_list **b)
+void	selection(t_list **a, t_list **b)
 {
 	int	min;
 	int	index;
 	int	size;
 
 	index = 0;
+	if (is_sorted(*a))
+		return ;
 	while (*a != NULL)
 	{
 		size = ft_lstsize(*a);
 		min = INT32_MAX;
-		insert_pickmin(a, &min, &index);
-		insert_rotate(a, min, index, size);
+		select_pickmin(a, &min, &index);
+		select_rotate(a, min, index, size);
 		pb(a, b);
 	}
 	while (*b != NULL)
