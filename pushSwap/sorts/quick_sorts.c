@@ -1,52 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   r_tools.c                                          :+:      :+:    :+:   */
+/*   quick_sorts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 14:45:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/15 16:58:29 by yseguin          ###   ########.fr       */
+/*   Created: 2024/12/13 17:34:47 by yseguin           #+#    #+#             */
+/*   Updated: 2024/12/16 13:03:55 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../swaplib.h"
-
 ///////////////////////////////////////////////////////////////////////////////
-// function for rotate a liste (1, 2, 3 -> 2, 3, 1)
-void	rotate(t_list **lst)
+// swap two value position in memory
+void	swap_val(int *a, int *b)
 {
-	t_list	*temp;
+	int	t;
 
-	if (*lst == NULL)
-		return ;
-	temp = *lst;
-	*lst = (*lst)->next;
-	temp->next = NULL;
-	ft_lstadd_back(lst, temp);
+	t = *a;
+	*a = *b;
+	*b = t;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// instruction for rotate a
-void	ra(t_list **a)
+// split tab in two part using pivot
+int	partition(int array[], int low, int high)
 {
-	rotate(a);
-	ft_putstr_fd("ra\n", 1);
+	int	pivot;
+	int	i;
+	int	j;
+
+	pivot = array[high];
+	i = (low - 1);
+	j = low;
+	while (j < high)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
+			swap_val(&array[i], &array[j]);
+		}
+		j++;
+	}
+	swap_val(&array[i + 1], &array[high]);
+	return (i + 1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// instruction for rotate b
-void	rb(t_list **b)
+// sort a tab of int
+void	quick_sort(int array[], int low, int high)
 {
-	rotate(b);
-	ft_putstr_fd("rb\n", 1);
-}
+	int	pivot;
 
-///////////////////////////////////////////////////////////////////////////////
-// instruction for rotate a and b
-void	rr(t_list **a, t_list **b)
-{
-	rotate(b);
-	rotate(a);
-	ft_putstr_fd("rr\n", 1);
+	if (low < high)
+	{
+		pivot = partition(array, low, high);
+		quick_sort(array, low, pivot - 1);
+		quick_sort(array, pivot + 1, high);
+	}
 }

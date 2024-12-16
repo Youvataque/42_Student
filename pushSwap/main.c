@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/11 21:13:09 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/16 15:18:15 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ t_list	*init_list(int argc, char **argv)
 		return (NULL);
 }
 
-void	sort_test(t_list **b)
-{
-	while (1)
-	{
-		sb(*b);
-		if (is_sorted(*b))
-			break ;
-		rb(b);
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -68,13 +57,10 @@ int	main(int argc, char **argv)
 		b = NULL;
 		if (ft_lstsize(a) == 2)
 			sort_two(a);
+		else if (ft_lstsize(a) == 3)
+			sort_three(&a);
 		else
-			monotone_sort(&a, &b);
-		while (a)
-		{
-			ft_printf("val : %d\n", *(int *)a->content);
-			a = a->next;
-		}
+			quartile_sort(&a, &b);
 	}
 	else
 		return (1);
