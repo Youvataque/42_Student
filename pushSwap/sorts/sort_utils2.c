@@ -6,12 +6,14 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:59:18 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 18:27:10 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 19:16:16 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../swaplib.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// for obtain the position of an element from a list
 int	get_index(t_list *lst, int target)
 {
 	int	i;
@@ -27,6 +29,8 @@ int	get_index(t_list *lst, int target)
 	return (-1);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// for know on wich middle of lst is the element pos
 int	get_direction(int pos, t_list *lst)
 {
 	const int	index = get_index(lst, pos);

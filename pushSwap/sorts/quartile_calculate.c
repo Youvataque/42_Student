@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:30:37 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 18:47:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 19:04:46 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	recup_a_pos(t_list *a, int b_pos)
 	return (third);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// calculate other possibility of b in a (min cost no matter the cost ^^)
 void	calculate_pos_end(int *cost, int *min_cost, int sync_rrr, int steps[4])
 {
 	if (*cost < *min_cost)

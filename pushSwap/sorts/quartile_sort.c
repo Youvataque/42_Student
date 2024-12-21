@@ -6,12 +6,14 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:10:40 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 18:23:53 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 19:21:38 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../swaplib.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// check if b contain element that are in [q1, q2].
 int	all_inb(t_list *a, double q1, double q2)
 {
 	while (a)
@@ -23,6 +25,8 @@ int	all_inb(t_list *a, double q1, double q2)
 	return (0);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// push element from a to b with "litle sort" for easiest sort
 void	push_b(t_quarts *quarts, t_list **a, t_list **b)
 {
 	int	val;
@@ -49,6 +53,8 @@ void	push_b(t_quarts *quarts, t_list **a, t_list **b)
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// rotation for adjust position of a after sort
 void	final_rotate(t_list **a)
 {
 	int	*min_maxval;
@@ -69,6 +75,8 @@ void	final_rotate(t_list **a)
 	free(min_maxval);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// my beautiful sort :)
 void	quartile_sort(t_list **a, t_list **b)
 {
 	t_quarts	*quarts;
