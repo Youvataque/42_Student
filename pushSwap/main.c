@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 18:14:22 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 22:00:15 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,7 @@ int	main(int argc, char **argv)
 		else
 			a = init_list(argc, argv);
 		if (a == NULL)
-		{
-			ft_putstr_fd("Error\n", 1);
-			return (1);
-		}
+			return (ft_putstr_fd("Error\n", 1), 1);
 		b = NULL;
 		if (ft_lstsize(a) == 2)
 			sort_two(a);
@@ -116,6 +113,7 @@ int	main(int argc, char **argv)
 			sort_three(&a);
 		else
 			quartile_sort(&a, &b);
+		ft_lstclear(&a, free);
 	}
 	else
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:30:37 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 19:04:46 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 21:56:31 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int	search_inter(t_list *a, int target, int max)
 {
 	int	closest;
 	int	current;
+	int	*min_maxval;
 
+	min_maxval = min_max(a);
 	closest = max;
-	if (target < min_max(a)[0])
-		return (min_max(a)[1]);
+	if (target < min_maxval[0])
+		return (min_maxval[1]);
 	while (a)
 	{
 		current = *(int *)a->content;
@@ -29,6 +31,7 @@ int	search_inter(t_list *a, int target, int max)
 			closest = current;
 		a = a->next;
 	}
+	free(min_maxval);
 	return (closest);
 }
 

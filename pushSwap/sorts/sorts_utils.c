@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:11:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 18:27:47 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 21:58:11 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ void	set_quartils(t_list *a, t_quarts *quarts)
 		quarts->q1 = calculate_median(array, 0, (size / 2) - 1);
 		quarts->q2 = calculate_median(array, (size / 2) + 1, size - 1);
 	}
+	free(array);
 }
