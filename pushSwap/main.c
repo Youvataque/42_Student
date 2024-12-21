@@ -6,14 +6,14 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 17:20:45 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 18:14:22 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swaplib.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// function for init the list.
+// function for init a node of the list from list_str
 t_list	*create_node_from_str(char *str, t_list **lst)
 {
 	void	*val;
@@ -31,6 +31,8 @@ t_list	*create_node_from_str(char *str, t_list **lst)
 	return (NULL);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// function for init a list from a str. "1 2   4 67"
 t_list	*init_list_str(char *str)
 {
 	t_list	*lst;
@@ -61,7 +63,7 @@ t_list	*init_list_str(char *str)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// function for init the list.
+// function for init the list from a pointer of str. ["1", "2", "4", "67"]
 t_list	*init_list(int argc, char **argv)
 {
 	t_list	*lst;
@@ -89,6 +91,8 @@ t_list	*init_list(int argc, char **argv)
 		return (NULL);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// main function
 int	main(int argc, char **argv)
 {
 	t_list	*a;

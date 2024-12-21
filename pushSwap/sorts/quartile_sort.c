@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:10:40 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 16:16:10 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 18:23:53 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,24 @@ void	push_b(t_quarts *quarts, t_list **a, t_list **b)
 	}
 }
 
-void final_rotate(t_list **a)
+void	final_rotate(t_list **a)
 {
-    int *min_maxval = min_max(*a);
-    int min_index = get_index(*a, min_maxval[0]);
-    int size = ft_lstsize(*a);
+	int	*min_maxval;
+	int	min_index;
+	int	size;
 
+	min_maxval = min_max(*a);
+	min_index = get_index(*a, min_maxval[0]);
+	size = ft_lstsize(*a);
 	if (is_sorted(*a))
 		return ;
-    if (min_index < size / 2)
-        while (min_index--)
-            ra(a);
-    else
-        while (size-- > min_index)
-            rra(a);
-    free(min_maxval);
+	if (min_index < size / 2)
+		while (min_index--)
+			ra(a);
+	else
+		while (size-- > min_index)
+			rra(a);
+	free(min_maxval);
 }
 
 void	quartile_sort(t_list **a, t_list **b)

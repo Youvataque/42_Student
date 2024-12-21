@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:59:18 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/18 20:34:25 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 18:27:10 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int	get_index(t_list *lst, int target)
 	return (-1);
 }
 
-int get_direction(int pos, t_list *lst)
+int	get_direction(int pos, t_list *lst)
 {
-	int index = get_index(lst, pos);
+	const int	index = get_index(lst, pos);
+
 	if (index == -1)
 		return (0);
 	if (index < ft_lstsize(lst) / 2)

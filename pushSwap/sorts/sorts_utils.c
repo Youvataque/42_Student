@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:11:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/16 22:41:49 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 18:27:47 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ int	is_sorted(t_list *lst)
 int	*min_max(t_list *lst)
 {
 	int	*result;
+	int	val;
 
 	result = malloc(sizeof(int) * 2);
 	if (!result)
 		return (NULL);
 	result[0] = INT32_MAX;
 	result[1] = INT32_MIN;
-
 	while (lst)
 	{
-		int val = *(int *)lst->content;
+		val = *(int *)lst->content;
 		if (val < result[0])
 			result[0] = val;
 		if (val > result[1])
