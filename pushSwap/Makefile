@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c utils.c tools/s_tools.c tools/p_tools.c tools/r_tools.c tools/rr_tools.c sorts/sort_two_select.c sorts/monotone_sort.c sorts/quartile_sort.c sorts/sorts_utils.c sorts/quick_sorts.c sorts/sort_utils2.c
+SRC = main.c utils.c tools/s_tools.c tools/p_tools.c tools/r_tools.c tools/rr_tools.c sorts/sort_two_three.c sorts/quartile_sort.c sorts/sorts_utils.c sorts/quick_sorts.c sorts/sort_utils2.c sorts/quartile_calculate.c sorts/quartile_operand.c
 OBJ = $(SRC:.c=.o)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

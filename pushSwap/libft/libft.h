@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/04 22:52:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2024/12/21 17:12:21 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strdup(const char *s1);
+char	*ft_strndup(const char *s1, size_t n);
 
 /* part 2 */
 char	*ft_substr(char const *s, unsigned int start, size_t len);
