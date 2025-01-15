@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 22:00:15 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/15 16:26:47 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,20 @@ t_list	*init_list(int argc, char **argv)
 		return (NULL);
 }
 
+void	execute(t_list **a, t_list **b)
+{
+	if (is_sorted(*a))
+		return ;
+	if (ft_lstsize(*a) == 2)
+		sort_two(*a);
+	else if (ft_lstsize(*a) == 3)
+		sort_three(a);
+	else if (ft_lstsize(*a) == 5)
+		five_sort(a, b);
+	else
+		quartile_sort(a, b);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // main function
 int	main(int argc, char **argv)
@@ -107,12 +121,7 @@ int	main(int argc, char **argv)
 		if (a == NULL)
 			return (ft_putstr_fd("Error\n", 1), 1);
 		b = NULL;
-		if (ft_lstsize(a) == 2)
-			sort_two(a);
-		else if (ft_lstsize(a) == 3)
-			sort_three(&a);
-		else
-			quartile_sort(&a, &b);
+		execute(&a, &b);
 		ft_lstclear(&a, free);
 	}
 	else

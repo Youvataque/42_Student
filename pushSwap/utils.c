@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:29:38 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 17:26:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/15 14:10:40 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	end_word_index(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != ' ')
+	while (str[i] && str[i] != ' ')
 		i++;
 	return (i);
 }

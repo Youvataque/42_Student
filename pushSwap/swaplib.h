@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:07 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 17:05:46 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/15 16:14:39 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SWAPLIB_H
 
 # include "libft/libft.h"
-
+# include <limits.h>
 /* struct of quartile sort */
 typedef struct s_quarts
 {
@@ -53,6 +53,7 @@ int		recup_a_pos(t_list *a, int b_pos);
 void	push_good_b(t_list **a, t_list **b);
 
 /* sorts */
+void	five_sort(t_list **a, t_list **b);
 void	quick_sort(int array[], int low, int high);
 void	sort_two(t_list *a);
 void	sort_three(t_list **a);

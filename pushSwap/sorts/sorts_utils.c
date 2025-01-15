@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:11:45 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 21:58:11 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/15 14:05:38 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	*min_max(t_list *lst)
 	result = malloc(sizeof(int) * 2);
 	if (!result)
 		return (NULL);
-	result[0] = INT32_MAX;
-	result[1] = INT32_MIN;
+	result[0] = INT_MAX;
+	result[1] = INT_MIN;
 	while (lst)
 	{
 		val = *(int *)lst->content;

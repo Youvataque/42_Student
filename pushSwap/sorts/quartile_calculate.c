@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:30:37 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/21 21:56:31 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/15 14:05:51 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	search_best(t_list *a, t_list *b)
 	int		a_pos;
 	t_list	*tmp;
 
-	cost_min[1] = INT32_MAX;
+	cost_min[1] = INT_MAX;
 	best_b_pos = *(int *)b->content;
 	tmp = b;
 	while (tmp)
