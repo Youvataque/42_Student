@@ -42,6 +42,8 @@ int	get_direction(int pos, t_list *lst)
 	return (0);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// get the second biggest int of a
 int	get_second_max(t_list *a, int max)
 {
 	int	smax;
@@ -56,6 +58,8 @@ int	get_second_max(t_list *a, int max)
 	return (smax);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// push all element in b for have 3 element in a
 void	push_b_five(int dir, int pos, t_list **a, t_list **b)
 {
 	int	size;
