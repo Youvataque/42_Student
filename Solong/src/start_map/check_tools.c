@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:48:05 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/24 14:22:31 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/24 22:07:45 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	check_conformity(char **map, t_point p)
 		while (nav.y < max.y)
 		{
 			if (ft_strchr("1XP", temp[nav.y][nav.x]) == NULL)
-				return (cleanMap(temp), 0);
+				return (clean_map(temp), 0);
 			(nav.y)++;
 		}
 		nav.y = 0;
 		(nav.x)++;
 	}
-	cleanMap(temp);
+	clean_map(temp);
 	return (1);
 }
 

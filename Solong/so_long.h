@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/24 14:21:28 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/24 22:07:01 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_point {
 
 /* components */
 void	fill(char **map, t_point begin, t_point max, char *charset);
-void	cleanMap(char **map);
+void	clean_map(char **map);
 t_point	get_user_p(char **map);
 char	**init_map(const char *path);
 char	**clone_map(char **map);
