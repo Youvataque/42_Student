@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2024/12/04 15:25:54 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/24 11:37:49 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <sys/types.h>
 # include <stddef.h>
 # include "printf/ft_printf.h"
+# include <fcntl.h>
+# include <unistd.h>
 
 /* part 1 */
 void	*ft_memset(void *b, int c, size_t len);
@@ -70,7 +72,13 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstadd_front(t_list **alst, t_list *new);
-#endif
 
 /* personal add */
-int	ft_printf(const char *str, ...);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+int		ft_printf(const char *str, ...);
+char	*get_next_line(int fd);
+
+#endif

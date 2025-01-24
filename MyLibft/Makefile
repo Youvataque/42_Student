@@ -13,7 +13,8 @@ PART2 =	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 		ft_substr.c ft_split.c
 
 PRINTF = printf/ft_put_add.c printf/ft_printf.c printf/ft_tools.c \
-         printf/ft_putstr_fd_count.c printf/ft_putnbr_unsi.c printf/ft_puthex_fd.c
+         printf/ft_putstr_fd_count.c printf/ft_putnbr_unsi.c printf/ft_puthex_fd.c \
+		 get_next_line.c
 
 BONUS =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c \
 		ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c \
