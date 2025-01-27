@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:48:05 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/24 22:07:45 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:16:27 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	check_conformity(char **map, t_point p)
 int	check_all(char **map)
 {
 	t_point	p;
+	t_point	e;
 
 	if (!map || !map[0])
 		return (0);
@@ -98,8 +99,11 @@ int	check_all(char **map)
 		return (0);
 	if (!check_closed(map))
 		return (0);
-	p = get_user_p(map);
+	p = get_user_l(map, 'P');
 	if (p.x == -1 || p.y == -1)
+		return (0);
+	e = get_user_l(map, 'E');
+	if (e.x == -1 && e.y == -1)
 		return (0);
 	if (!check_conformity(map, p))
 		return (p.x);

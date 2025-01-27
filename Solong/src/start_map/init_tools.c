@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:46:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/24 14:24:39 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:13:43 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**init_map(const char *path)
 
 /////////////////////////////////////////////////////////////////////////////
 // return the start position or an error less/more than 1
-t_point	get_user_p(char **map)
+t_point	get_user_l(char **map, char c)
 {
 	t_point	nav;
 	t_point	result;
@@ -81,7 +81,7 @@ t_point	get_user_p(char **map)
 	{
 		while (nav.x < (int)ft_strlen(map[nav.y]))
 		{
-			if (map[nav.y][nav.x] == 'P')
+			if (map[nav.y][nav.x] == c)
 			{
 				if (++find > 1)
 					return ((t_point){-1, -1});

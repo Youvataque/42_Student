@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/24 22:07:01 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/27 14:50:57 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,25 @@ typedef struct s_point {
 	int	y;
 } t_point;
 
+typedef struct s_game {
+	void	*mlx;
+	void	*win;
+	void	*way_img;
+	void	*wall_img;
+	void	*exit_img;
+	void	*player_img;
+	void	*colec_img;
+	int		tile_size;
+	int		width;
+	int		height;
+	char	**map;
+}	t_game;
+
 /* components */
+void	display_map(char **map);
 void	fill(char **map, t_point begin, t_point max, char *charset);
 void	clean_map(char **map);
-t_point	get_user_p(char **map);
+t_point	get_user_l(char **map, char c);
 char	**init_map(const char *path);
 char	**clone_map(char **map);
 size_t	check_format(char **map);
