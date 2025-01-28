@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:46:43 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/27 15:34:34 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 13:13:17 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,6 @@ void	load_images(t_game *game)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// close the windows and clean all img en memory
-int	close_window(t_game *game)
-{
-	if (game->way_img)
-		mlx_destroy_image(game->mlx, game->way_img);
-	if (game->wall_img)
-		mlx_destroy_image(game->mlx, game->wall_img);
-	if (game->player_img)
-		mlx_destroy_image(game->mlx, game->player_img);
-	if (game->exit_img)
-		mlx_destroy_image(game->mlx, game->exit_img);
-	if (game->colec_img)
-		mlx_destroy_image(game->mlx, game->colec_img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	ft_printf("Window closed.\n");
-	exit(0);
-	return (0);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 // render good img from map chars
 void	render_tile(t_game *game, int x, int y, char tile)
 {
@@ -72,33 +51,49 @@ void	render_tile(t_game *game, int x, int y, char tile)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// start the game
-void	start_all(char **map, t_game *game)
+// render only visible tiles based on camera position
+void	render_visible_map(t_game *game)
 {
 	int		x;
 	int		y;
-	int		size;
+	int		map_x;
+	int		map_y;
+	t_point	windo;
 
-	size = game->size;
-	load_images(game);
-	mlx_hook((*game).win, 17, 0, close_window, game);
-	mlx_key_hook(game->win, key_pressed, game);
+	windo = game->windo;
 	y = 0;
-	while (y < (*game).height)
+	while (y < windo.y)
 	{
 		x = 0;
-		while (x < (*game).width)
+		while (x < windo.x)
 		{
-			render_tile(game, x * size, y * size, map[y][x]);
+			map_x = game->camera.x + x;
+			map_y = game->camera.y + y;
+			if (map_x >= 0 && map_x < game->width && map_y >= 0
+				&& map_y < game->height)
+				render_tile(game, x * game->size, y * game->size,
+					game->map[map_y][map_x]);
 			x++;
 		}
 		y++;
 	}
-	mlx_loop((*game).mlx);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// create the window and load all
+// Start the game
+void	start_all(t_game *game)
+{
+	game->max_c = get_nbc(game->map);
+	game->inst_c = 0;
+	load_images(game);
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_key_hook(game->win, key_pressed, game);
+	render_visible_map(game);
+	mlx_loop(game->mlx);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Create the window and load all
 void	display_map(char **map)
 {
 	t_game	g;
@@ -107,18 +102,22 @@ void	display_map(char **map)
 	g.map = map;
 	g.height = map_heigth(map);
 	g.width = (int)ft_strlen(map[0]);
+	g.windo.x = ternary(g.width < 20, g.width, 20);
+	g.windo.y = ternary(g.height < 15, g.height, 15);
 	g.mlx = mlx_init();
 	g.step = 0;
+	g.camera = (t_point){0, 0};
 	if (!g.mlx)
 	{
 		ft_printf("Error: Failed to initialize MiniLibX\n");
 		exit(1);
 	}
-	g.win = mlx_new_window(g.mlx, g.width * 64, g.height * 64, "so_long");
+	g.win = mlx_new_window(g.mlx, g.windo.x * g.size,
+			g.windo.y * g.size, "so_long");
 	if (!g.win)
 	{
 		ft_printf("Error: Failed to create window\n");
 		exit(1);
 	}
-	start_all(map, &g);
+	start_all(&g);
 }

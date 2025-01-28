@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/27 15:33:33 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 13:11:47 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,29 @@ typedef struct s_game {
 	int		width;
 	int		height;
 	int		step;
+	int		max_c;
+	int		inst_c;
+	t_point	windo;
 	char	**map;
+	t_point camera;
 }	t_game;
 
 /* components */
 void	display_map(char **map);
 void	fill(char **map, t_point begin, t_point max, char *charset);
 void	render_tile(t_game *game, int x, int y, char tile);
+void    render_visible_map(t_game *game);
 void	clean_map(char **map);
 t_point	get_user_l(char **map, char c);
 char	**init_map(const char *path);
 char	**clone_map(char **map);
 size_t	check_format(char **map);
+int		get_nbc(char **map);
 int		close_window(t_game *game);
 int		map_heigth(char **map);
 int		key_pressed(int keycode, void *param);
 int		check_lines(char **map);
 int		check_col(char **map);
 int		check_all(char **map);
+int		ternary(int condi, int one, int two);
 #endif

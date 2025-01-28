@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:48:05 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/25 18:16:27 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 13:23:52 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_closed(char **map)
 
 /////////////////////////////////////////////////////////////////////////////
 // check if the exit and collectible are accessible
-int	check_conformity(char **map, t_point p)
+int	check_conformity(char **map, t_point p, char *access, char *isIn)
 {
 	char	**temp;
 	t_point	max;
@@ -68,12 +68,12 @@ int	check_conformity(char **map, t_point p)
 	nav = (t_point){0, 0};
 	max = (t_point){ft_strlen(map[0]), map_heigth(map)};
 	temp = clone_map(map);
-	fill(temp, p, max, "0CEP");
+	fill(temp, p, max, access);
 	while (nav.x < max.x)
 	{
 		while (nav.y < max.y)
 		{
-			if (ft_strchr("1XP", temp[nav.y][nav.x]) == NULL)
+			if (ft_strchr(isIn, temp[nav.y][nav.x]) == NULL)
 				return (clean_map(temp), 0);
 			(nav.y)++;
 		}
@@ -105,7 +105,9 @@ int	check_all(char **map)
 	e = get_user_l(map, 'E');
 	if (e.x == -1 && e.y == -1)
 		return (0);
-	if (!check_conformity(map, p))
-		return (p.x);
+	if (!check_conformity(map, p, "0CEP", "1X"))
+		return (0);
+	if (!check_conformity(map, p, "0CP", "1XE"))
+		return (0);
 	return (1);
 }
