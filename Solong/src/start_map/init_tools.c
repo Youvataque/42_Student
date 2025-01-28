@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:46:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 16:06:59 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:02:45 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ char	**init_map(const char *path)
 	index = 0;
 	while (temp)
 	{
-		if (ft_strrchr(temp, '\n') == NULL)
-			return (NULL);
-		temp[ft_strlen(temp) - 1] = '\0';
-		result[index] = temp;
-		index++;
+		if (ft_strlen(temp) == 0)
+			return (free(temp), NULL);
+		if (temp[ft_strlen(temp) - 1] == '\n')
+			temp[ft_strlen(temp) - 1] = '\0';
+		result[index++] = temp;
 		temp = get_next_line(fd);
 	}
 	result[index] = NULL;
