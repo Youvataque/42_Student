@@ -1,7 +1,7 @@
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = src/main.c src/start_map/init_tools.c src/start_map/check_tools.c src/start_map/check_microtools.c src/graphics/init_graphics.c
+SRC = src/main.c src/start_map/init_tools.c src/start_map/check_tools.c src/start_map/check_microtools.c src/graphics/init_graphics.c src/graphics/controllers.c
 OBJ = $(SRC:%.c=obj/%.o)
 
 LIBFT_PATH = MyLibft

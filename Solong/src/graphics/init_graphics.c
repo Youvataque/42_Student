@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:46:43 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/27 14:51:05 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:34:34 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 void	load_images(t_game *game)
 {
 	game->way_img = mlx_xpm_file_to_image(game->mlx, "assets/way.xpm",
-			&game->tile_size, &game->tile_size);
+			&game->size, &game->size);
 	game->wall_img = mlx_xpm_file_to_image(game->mlx, "assets/wall.xpm",
-			&game->tile_size, &game->tile_size);
+			&game->size, &game->size);
 	game->player_img = mlx_xpm_file_to_image(game->mlx, "assets/player.xpm",
-			&game->tile_size, &game->tile_size);
+			&game->size, &game->size);
 	game->exit_img = mlx_xpm_file_to_image(game->mlx, "assets/exit.xpm",
-			&game->tile_size, &game->tile_size);
+			&game->size, &game->size);
 	game->colec_img = mlx_xpm_file_to_image(game->mlx, "assets/colec.xpm",
-			&game->tile_size, &game->tile_size);
+			&game->size, &game->size);
 	if (!game->way_img || !game->wall_img || !game->player_img
 		|| !game->exit_img || !game->colec_img)
 	{
@@ -79,9 +79,10 @@ void	start_all(char **map, t_game *game)
 	int		y;
 	int		size;
 
-	size = game->tile_size;
+	size = game->size;
 	load_images(game);
 	mlx_hook((*game).win, 17, 0, close_window, game);
+	mlx_key_hook(game->win, key_pressed, game);
 	y = 0;
 	while (y < (*game).height)
 	{
@@ -102,11 +103,12 @@ void	display_map(char **map)
 {
 	t_game	g;
 
-	g.tile_size = 64;
+	g.size = 64;
 	g.map = map;
 	g.height = map_heigth(map);
 	g.width = (int)ft_strlen(map[0]);
 	g.mlx = mlx_init();
+	g.step = 0;
 	if (!g.mlx)
 	{
 		ft_printf("Error: Failed to initialize MiniLibX\n");

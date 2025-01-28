@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/27 14:50:57 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:33:33 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@
 
 # include "minilibx-linux/mlx.h"
 
+/* macros */
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+
 /* structs */
 typedef struct s_point {
 	int	x;
@@ -37,21 +48,25 @@ typedef struct s_game {
 	void	*exit_img;
 	void	*player_img;
 	void	*colec_img;
-	int		tile_size;
+	int		size;
 	int		width;
 	int		height;
+	int		step;
 	char	**map;
 }	t_game;
 
 /* components */
 void	display_map(char **map);
 void	fill(char **map, t_point begin, t_point max, char *charset);
+void	render_tile(t_game *game, int x, int y, char tile);
 void	clean_map(char **map);
 t_point	get_user_l(char **map, char c);
 char	**init_map(const char *path);
 char	**clone_map(char **map);
 size_t	check_format(char **map);
+int		close_window(t_game *game);
 int		map_heigth(char **map);
+int		key_pressed(int keycode, void *param);
 int		check_lines(char **map);
 int		check_col(char **map);
 int		check_all(char **map);
