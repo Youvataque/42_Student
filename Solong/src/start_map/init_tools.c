@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:46:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 13:12:10 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:06:59 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	map_lines(const char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (perror("Erreur lors de l'ouverture du fichier"), -1);
+		return (ft_printf("Error when trying to read !\n"), -1);
 	readed = read(fd, temp, 5);
 	result = 0;
 	while (readed > 0)
@@ -34,7 +34,7 @@ int	map_lines(const char *path)
 		readed = read(fd, temp, 5);
 	}
 	if (readed < 0)
-		return (perror("Erreur lors de la lecture du fichier"), close(fd), -1);
+		return (close(fd), -1);
 	return (result);
 }
 
@@ -50,14 +50,15 @@ char	**init_map(const char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (perror("Erreur lors de l'ouverture du fichier"), NULL);
+		return (NULL);
 	result = malloc(sizeof(char *) * (map_lines(path) + 1));
 	temp = get_next_line(fd);
 	index = 0;
 	while (temp)
 	{
-		if (temp[ft_strlen(temp) - 1] == '\n')
-			temp[ft_strlen(temp) - 1] = '\0';
+		if (ft_strrchr(temp, '\n') == NULL)
+			return (NULL);
+		temp[ft_strlen(temp) - 1] = '\0';
 		result[index] = temp;
 		index++;
 		temp = get_next_line(fd);
