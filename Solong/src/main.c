@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:21:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 15:22:08 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:14:14 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ int	main(int ac, char **av)
 		{
 			ft_printf("Error\n");
 			type_error(error);
+			clean_map(map);
 			return (1);
 		}
 		display_map(map);
 	}
 	else
 		ft_printf("Error\n");
+	clean_map(map);
 	return (0);
 }

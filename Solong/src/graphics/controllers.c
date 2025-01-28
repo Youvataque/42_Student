@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:53:48 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 14:39:29 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:21:15 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	close_window(t_game *game)
 		mlx_destroy_image(game->mlx, game->colec_img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
 	exit(0);
 	return (0);
 }
