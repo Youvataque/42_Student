@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:53:48 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 13:20:50 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:39:29 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ int	close_window(t_game *game)
 		mlx_destroy_image(game->mlx, game->colec_img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	ft_printf("Window closed.number of step : %d\n", game->step);
 	exit(0);
+	return (0);
+}
+
+int	loosse_game(t_game *game)
+{
+	ft_printf("You loose the game !");
+	close_window(game);
 	return (0);
 }
 
@@ -70,8 +76,12 @@ void	moove(t_game *game, t_point old, t_point new)
 	if (game->map[new.y][new.x] == 'C')
 		game->inst_c++;
 	if (game->map[new.y][new.x] == 'E')
+	{
+		ft_printf("Congratulation ! You won.");
 		close_window(game);
+	}
 	game->step++;
+	ft_printf("number of step : %d\n", game->step);
 	game->map[new.y][new.x] = 'P';
 	game->map[old.y][old.x] = '0';
 	update_camera(game, new);
@@ -86,7 +96,7 @@ int	key_pressed(int keycode, void *param)
 
 	old = get_user_l(((t_game *)param)->map, 'P');
 	if (keycode == KEY_ESC)
-		close_window((t_game *)param);
+		loosse_game((t_game *)param);
 	else if (keycode == KEY_W)
 		moove((t_game *)param, old, (t_point){old.x, old.y - 1});
 	else if (keycode == KEY_S)

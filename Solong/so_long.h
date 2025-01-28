@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 13:11:47 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:39:46 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**init_map(const char *path);
 char	**clone_map(char **map);
 size_t	check_format(char **map);
 int		get_nbc(char **map);
-int		close_window(t_game *game);
+int		loosse_game(t_game *game);
 int		map_heigth(char **map);
 int		key_pressed(int keycode, void *param);
 int		check_lines(char **map);

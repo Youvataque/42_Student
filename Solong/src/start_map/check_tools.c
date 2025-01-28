@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:48:05 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 13:23:52 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:32:24 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,20 @@ int	check_all(char **map)
 	if (!map || !map[0])
 		return (0);
 	if (!check_format(map))
-		return (0);
+		return (2);
 	if (!check_form(map))
-		return (0);
+		return (3);
 	if (!check_closed(map))
-		return (0);
+		return (4);
 	p = get_user_l(map, 'P');
 	if (p.x == -1 || p.y == -1)
-		return (0);
+		return (5);
 	e = get_user_l(map, 'E');
 	if (e.x == -1 && e.y == -1)
-		return (0);
+		return (5);
 	if (!check_conformity(map, p, "0CEP", "1X"))
-		return (0);
+		return (6);
 	if (!check_conformity(map, p, "0CP", "1XE"))
-		return (0);
+		return (6);
 	return (1);
 }

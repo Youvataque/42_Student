@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:46:43 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 13:13:17 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:39:58 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	start_all(t_game *game)
 	game->max_c = get_nbc(game->map);
 	game->inst_c = 0;
 	load_images(game);
-	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_hook(game->win, 17, 0, loosse_game, game);
 	mlx_key_hook(game->win, key_pressed, game);
 	render_visible_map(game);
 	mlx_loop(game->mlx);
