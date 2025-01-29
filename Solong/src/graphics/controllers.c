@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controllers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:53:48 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/29 13:56:36 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:33:42 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,21 @@ int	close_window(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit_img);
 	if (game->colec_img)
 		mlx_destroy_image(game->mlx, game->colec_img);
+	if (game->bad_img)
+		mlx_destroy_image(game->mlx, game->bad_img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
+	free(game->mlx);
 	exit(0);
 	return (0);
 }
 
 int	lose_game(t_game *game)
 {
-	int	i;
-
 	ft_printf("You lose the game!\n");
-	i = 0;
-	while (game->map[i])
-		free(game->map[i++]);
-	free(game->map);
+	clean_map(game->map);
 	close_window(game);
 	return (0);
 }
@@ -93,6 +91,7 @@ void	moove(t_game *game, t_point old, t_point new)
 	if (game->map[new.y][new.x] == 'E')
 	{
 		ft_printf("Congratulation ! You won.");
+		clean_map(game->map);
 		close_window(game);
 	}
 	game->map[new.y][new.x] = 'P';

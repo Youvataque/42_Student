@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:46:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/29 11:01:00 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:37:22 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,22 @@
 int	map_lines(const char *path)
 {
 	int		result;
-	int		readed;
-	char	temp[6];
+	char	*temp;
 	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	readed = read(fd, temp, 5);
+	temp = get_next_line(fd);
 	result = 0;
-	while (readed > 0)
+	while (temp)
 	{
-		temp[5] = '\0';
-		if (ft_strchr(temp, '\n') != NULL)
-			result += 1;
-		readed = read(fd, temp, 5);
+		result++;
+		free(temp);
+		temp = get_next_line(fd);
 	}
-	if (readed < 0)
-		return (close(fd), -1);
+	free(temp);
+	close(fd);
 	return (result);
 }
 
@@ -51,6 +49,8 @@ char	**init_map(const char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
+	if (map_lines(path) == 0 || map_lines(path) == -1)
+		return (NULL);
 	result = malloc(sizeof(char *) * (map_lines(path) + 1));
 	temp = get_next_line(fd);
 	index = 0;
@@ -64,6 +64,7 @@ char	**init_map(const char *path)
 		temp = get_next_line(fd);
 	}
 	result[index] = NULL;
+	close(fd);
 	return (result);
 }
 

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:31:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/29 13:56:16 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:43:55 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// render the counter of player steps
 void	display_counter(t_game *game)
 {
 	char	*step_str;
@@ -24,6 +26,8 @@ void	display_counter(t_game *game)
 	free(final_str);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+// move one of the ennemies
 void	move_one(t_game *g, int x, int y)
 {
 	int	dx[4];
@@ -50,6 +54,8 @@ void	move_one(t_game *g, int x, int y)
 	}
 }
 
+/////////////////////////////////////////////////////////////////////////////
+// move all ennemies
 int	move_enemies(t_game *game)
 {
 	int			x;
@@ -77,6 +83,8 @@ int	move_enemies(t_game *game)
 	return (1);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+// init ennemies on the map and render it
 void	init_enemies(t_game *game)
 {
 	int	i;
@@ -93,7 +101,6 @@ void	init_enemies(t_game *game)
 		ft_printf("Error: Failed to load enemy image\n");
 		exit(1);
 	}
-	srand(time(NULL));
 	while (enemy_count < max_enemies)
 	{
 		i = rand() % game->height;

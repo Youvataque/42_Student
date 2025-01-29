@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:21:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/29 11:11:15 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:38:43 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		map = init_map(av[1]);
+		if (!map)
+			return (ft_printf("Error\n"), type_error(0), 1);
 		error = check_all(map);
 		if (error != 1)
 		{

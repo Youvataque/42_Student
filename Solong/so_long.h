@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/29 12:45:43 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:47:05 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@
 # define KEY_RIGHT 65363
 
 /* structs */
-typedef struct s_point {
+typedef struct s_point
+{
 	int	x;
 	int	y;
-} t_point;
+}	t_point;
 
-typedef struct s_game {
+typedef struct s_game
+{
 	void	*mlx;
 	void	*win;
 	void	*way_img;
@@ -57,17 +59,17 @@ typedef struct s_game {
 	int		inst_c;
 	t_point	windo;
 	char	**map;
-	t_point camera;
+	t_point	camera;
 }	t_game;
 
 /* components */
 void	display_map(char **map);
 void	display_counter(t_game *game);
-int   move_enemies(t_game *game);
-void    init_enemies(t_game *game);
+int		move_enemies(t_game *game);
+void	init_enemies(t_game *game);
 void	fill(char **map, t_point begin, t_point max, char *charset);
 void	render_tile(t_game *game, int x, int y, char tile);
-void    render_visible_map(t_game *game);
+void	render_visible_map(t_game *game);
 void	clean_map(char **map);
 t_point	get_user_l(char **map, char c);
 char	**init_map(const char *path);
