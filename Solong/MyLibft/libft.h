@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:57:52 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/24 11:37:49 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 11:02:48 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "printf/ft_printf.h"
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 /* part 1 */
 void	*ft_memset(void *b, int c, size_t len);

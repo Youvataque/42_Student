@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controllers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:53:48 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 17:21:15 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 13:56:36 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,15 @@ int	close_window(t_game *game)
 	return (0);
 }
 
-int	loosse_game(t_game *game)
+int	lose_game(t_game *game)
 {
-	ft_printf("You loose the game !");
+	int	i;
+
+	ft_printf("You lose the game!\n");
+	i = 0;
+	while (game->map[i])
+		free(game->map[i++]);
+	free(game->map);
 	close_window(game);
 	return (0);
 }
@@ -73,21 +79,27 @@ void	moove(t_game *game, t_point old, t_point new)
 {
 	if (new.x < 0 || new.x >= game->width || new.y < 0 || new.y >= game->height
 		|| game->map[new.y][new.x] == '1'
-			|| (game->map[new.y][new.x] == 'E' && game->inst_c != game->max_c))
+		|| (game->map[new.y][new.x] == 'E' && game->inst_c != game->max_c))
 		return ;
+	if (game->map[new.y][new.x] == 'B')
+	{
+		lose_game(game);
+		return ;
+	}
 	if (game->map[new.y][new.x] == 'C')
 		game->inst_c++;
+	game->step++;
+	ft_printf("number of step : %d\n", game->step);
 	if (game->map[new.y][new.x] == 'E')
 	{
 		ft_printf("Congratulation ! You won.");
 		close_window(game);
 	}
-	game->step++;
-	ft_printf("number of step : %d\n", game->step);
 	game->map[new.y][new.x] = 'P';
 	game->map[old.y][old.x] = '0';
 	update_camera(game, new);
 	render_visible_map(game);
+	display_counter(game);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -98,7 +110,7 @@ int	key_pressed(int keycode, void *param)
 
 	old = get_user_l(((t_game *)param)->map, 'P');
 	if (keycode == KEY_ESC)
-		loosse_game((t_game *)param);
+		lose_game((t_game *)param);
 	else if (keycode == KEY_W)
 		moove((t_game *)param, old, (t_point){old.x, old.y - 1});
 	else if (keycode == KEY_S)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_graphics.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:46:43 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 14:39:58 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 12:45:59 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	load_images(t_game *game)
 			&game->size, &game->size);
 	game->colec_img = mlx_xpm_file_to_image(game->mlx, "assets/colec.xpm",
 			&game->size, &game->size);
+	init_enemies(game);
 	if (!game->way_img || !game->wall_img || !game->player_img
-		|| !game->exit_img || !game->colec_img)
+		|| !game->exit_img || !game->colec_img || !game->bad_img)
 	{
 		ft_printf("Error: Failed to load one or more images\n");
 		exit(1);
@@ -48,6 +49,8 @@ void	render_tile(t_game *game, int x, int y, char tile)
 		mlx_put_image_to_window(game->mlx, game->win, game->exit_img, x, y);
 	else if (tile == 'C')
 		mlx_put_image_to_window(game->mlx, game->win, game->colec_img, x, y);
+	else if (tile == 'B')
+		mlx_put_image_to_window(game->mlx, game->win, game->bad_img, x, y);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,9 +89,11 @@ void	start_all(t_game *game)
 	game->max_c = get_nbc(game->map);
 	game->inst_c = 0;
 	load_images(game);
-	mlx_hook(game->win, 17, 0, loosse_game, game);
+	mlx_hook(game->win, 17, 0, lose_game, game);
 	mlx_key_hook(game->win, key_pressed, game);
+	mlx_loop_hook(game->mlx, move_enemies, game);
 	render_visible_map(game);
+	display_counter(game);
 	mlx_loop(game->mlx);
 }
 

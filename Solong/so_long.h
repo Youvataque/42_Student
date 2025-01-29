@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:18:25 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 14:49:55 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 12:45:43 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_game {
 	void	*exit_img;
 	void	*player_img;
 	void	*colec_img;
+	void	*bad_img;
 	int		size;
 	int		width;
 	int		height;
@@ -61,6 +62,9 @@ typedef struct s_game {
 
 /* components */
 void	display_map(char **map);
+void	display_counter(t_game *game);
+int   move_enemies(t_game *game);
+void    init_enemies(t_game *game);
 void	fill(char **map, t_point begin, t_point max, char *charset);
 void	render_tile(t_game *game, int x, int y, char tile);
 void    render_visible_map(t_game *game);
@@ -70,7 +74,7 @@ char	**init_map(const char *path);
 char	**clone_map(char **map);
 size_t	check_format(char **map);
 int		get_nbc(char **map);
-int		loosse_game(t_game *game);
+int		lose_game(t_game *game);
 int		map_heigth(char **map);
 int		key_pressed(int keycode, void *param);
 int		check_lines(char **map);

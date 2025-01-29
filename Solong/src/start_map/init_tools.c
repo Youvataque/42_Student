@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:46:10 by yseguin           #+#    #+#             */
-/*   Updated: 2025/01/28 17:10:22 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/01/29 11:01:00 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	map_lines(const char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (ft_printf("Error when trying to read !\n"), -1);
+		return (-1);
 	readed = read(fd, temp, 5);
 	result = 0;
 	while (readed > 0)
