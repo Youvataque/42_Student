@@ -6,12 +6,14 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:23:17 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/01 15:55:22 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/01 21:13:14 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Function pipex, similare to systeme cmd : in < cmd1 | cmd2 > out
 void	pipex(int in, int out, char **cmd, char **env)
 {
 	int		fd[2];
@@ -41,6 +43,8 @@ void	pipex(int in, int out, char **cmd, char **env)
 	waitpid(pid[1], NULL, 0);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Main of the software
 int	main(int ac, char **av, char **env)
 {
 	int	in;
@@ -49,6 +53,12 @@ int	main(int ac, char **av, char **env)
 	if (ac == 5)
 	{
 		in = open(av[1], O_RDONLY);
+		if (in == -1)
+			return (ft_printf("No such file or directory\n"), 1);
+		if (!check_cmd(av[2], env))
+			return (ft_printf("%s : command not found\n", av[2]), 1);
+		if (!check_cmd(av[3], env))
+			return (ft_printf("%s : command not found\n", av[3]), 1);
 		out = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		pipex(in, out, &(av[2]), env);
 	}

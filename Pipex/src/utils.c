@@ -6,12 +6,14 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:22:56 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/01 15:54:52 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/01 21:12:02 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Function for search the cmd path (ex : usr/bin)
 char	*search_path(char *cmd, char **env)
 {
 	int		fd[2];
@@ -38,6 +40,38 @@ char	*search_path(char *cmd, char **env)
 	return (result);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// function for clean an str map
+void	clean_tab(char **map)
+{
+	int	x;
+
+	x = 0;
+	while (map[x])
+	{
+		free(map[x]);
+		x++;
+	}
+	free(map);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// function for check if the cmd is usable or not
+int	check_cmd(char *cmd1, char **env)
+{
+	char	**map;
+	char	*path;
+
+	map = ft_split(cmd1, ' ');
+	path = search_path(map[0], env);
+	if (!path || *path == '\0')
+		return (clean_tab(map), free(path), 0);
+	else
+		return (clean_tab(map), free(path), 1);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// function for execute the cmd in a selected fd from a selected fd
 void	ft_exec(char *cmd, int infd, int outfd, char **env)
 {
 	char	*cmd_path;
@@ -56,6 +90,6 @@ void	ft_exec(char *cmd, int infd, int outfd, char **env)
 	execve(cmd_path, args, env);
 	perror("execve");
 	free(cmd_path);
-	free(args);
+	clean_tab(args);
 	exit(1);
 }
