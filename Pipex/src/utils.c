@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:22:56 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/01 21:12:02 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/03 12:41:28 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	clean_tab(char **map)
 
 ///////////////////////////////////////////////////////////////////////////////
 // function for check if the cmd is usable or not
-int	check_cmd(char *cmd1, char **env)
+int	check_cmd(char *cmd, char **env)
 {
 	char	**map;
 	char	*path;
 
-	map = ft_split(cmd1, ' ');
+	map = ft_split(cmd, ' ');
 	path = search_path(map[0], env);
 	if (!path || *path == '\0')
 		return (clean_tab(map), free(path), 0);
@@ -92,4 +92,18 @@ void	ft_exec(char *cmd, int infd, int outfd, char **env)
 	free(cmd_path);
 	clean_tab(args);
 	exit(1);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Execute the good ft_exec in pipex (split for norm...)
+void	pipex_exec(t_pipevar vars, int io[2], char **env, int nb_arg)
+{
+	if (vars.prev != io[0])
+		close(io[0]);
+	if (vars.i < (nb_arg - 1))
+		close(vars.fd[0]);
+	if (vars.i == nb_arg - 1)
+		ft_exec(vars.cmds[vars.i], vars.prev, io[1], env);
+	else
+		ft_exec(vars.cmds[vars.i], vars.prev, vars.fd[1], env);
 }
