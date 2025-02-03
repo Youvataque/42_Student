@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:22:56 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/03 12:41:28 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:35:42 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*search_path(char *cmd, char **env)
 	}
 	close(fd[1]);
 	result = get_next_line(fd[0]);
+	free(get_next_line(fd[0]));
 	close(fd[0]);
 	waitpid(pid, NULL, 0);
 	return (result);
