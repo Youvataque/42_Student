@@ -1,4 +1,4 @@
-NAME = philosophers
+NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC = src/main.c src/utils.c src/philo_act.c

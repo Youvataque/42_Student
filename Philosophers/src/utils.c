@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:59:26 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/12 14:56:20 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:35:38 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_philo	*init_structs(int nb, t_pdatas datas)
 
 	if (nb <= 0)
 		return (NULL);
-	fourchs = malloc(sizeof(t_fourch) * nb);
+	fourchs = malloc(sizeof(t_fourch) * (nb == 1 ? 2 : nb));
 	if (!fourchs)
 		return (NULL);
 	philos = malloc(sizeof(t_philo) * nb);
@@ -82,8 +82,8 @@ t_philo	*init_structs(int nb, t_pdatas datas)
 		fourchs[i].id = i;
 		if (pthread_mutex_init(&fourchs[i].mutex, NULL) != 0)
 			return (clean_init(philos, fourchs, i), NULL);
-		temp = &fourchs[(i + 1) % nb];
-		philos[i] = (t_philo){i, datas.t_start, 0, &fourchs[i], temp, {}};
+		temp = &fourchs[(i + 1) % (nb == 1 ? 2 : nb)];
+		philos[i] = (t_philo){i, datas.t_start, 0, NULL, &fourchs[i], temp, {}};
 		pthread_mutex_init(&(philos[i].meal_mutex), NULL);
 		i++;
 	}

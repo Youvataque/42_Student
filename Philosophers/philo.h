@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:39:47 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/12 14:45:54 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:27:19 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_pdatas
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
-	int				max_eat;
+	int				max_meal;
 	int				end;
 	pthread_mutex_t	end_mutex;
 	pthread_mutex_t	write_mutex;
@@ -45,6 +45,7 @@ typedef struct s_philo
 {
 	int				id;
 	long			t_meal;
+	int				c_meal;
 	pthread_t		thread;
 	t_fourch		*rightf;
 	t_fourch		*leftf;
@@ -61,6 +62,7 @@ typedef struct s_phidat
 int		ft_atoi(const char *str);
 long	get_time(void);
 int		ended(t_pdatas *datas, int update);
+int		is_finished(t_philo *philo, t_pdatas *datas);
 t_philo	*init_structs(int nb, t_pdatas datas);
 
 /* actions */

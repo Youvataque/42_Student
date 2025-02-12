@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_act.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:02:37 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/12 14:41:47 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/12 23:27:04 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,31 @@
 
 void print(t_pdatas* datas, t_philo *philo, char *str)
 {
-    long int time;
+	long int time;
 
-    pthread_mutex_lock(&(datas->write_mutex));
-    time = get_time() - datas->t_start;
-    pthread_mutex_lock(&(datas->end_mutex));
-    if (!datas->end && time >= 0 && time <= INT_MAX)
-    {
-        pthread_mutex_unlock(&(datas->end_mutex));
-        printf("%ld - %d - %s\n", get_time() - datas->t_start, philo->id, str);
-    }
-    else
-    {
-        pthread_mutex_unlock(&(datas->end_mutex));
-    }
-    pthread_mutex_unlock(&(datas->write_mutex));
+	pthread_mutex_lock(&(datas->write_mutex));
+	time = get_time() - datas->t_start;
+	pthread_mutex_lock(&(datas->end_mutex));
+	if (!datas->end && time >= 0 && time <= INT_MAX)
+	{
+		pthread_mutex_unlock(&(datas->end_mutex));
+		printf("%ld - %d - %s\n", get_time() - datas->t_start, philo->id, str);
+	}
+	else
+	{
+		pthread_mutex_unlock(&(datas->end_mutex));
+	}
+	pthread_mutex_unlock(&(datas->write_mutex));
+}
+
+int	is_finished(t_philo *philo, t_pdatas *datas)
+{
+	if (datas->max_meal != -1)
+	{
+		if (datas->max_meal == philo->c_meal)
+			return (1);
+	}
+	return (0);
 }
 
 int	is_dead(t_philo *philo, t_pdatas *datas)
@@ -54,11 +64,15 @@ void	*check_death(void *arg)
 	t_phidat *phidat;
 
 	phidat = (t_phidat *)arg;
-	usleep(phidat->datas->t_die + 1);
-	if (ended(phidat->datas, 0) || is_dead(phidat->philos, phidat->datas))
+	while (!ended(phidat->datas, 0))
 	{
-		print(phidat->datas, phidat->philos, " died\n");
-		ended(phidat->datas, 1);
+		if (is_dead(phidat->philos, phidat->datas))
+		{
+			print(phidat->datas, phidat->philos, "died");
+			ended(phidat->datas, 1);
+			break;
+		}
+		usleep(500);
 	}
 	return (NULL);
 }
@@ -88,6 +102,7 @@ void	eat(t_philo *philo, t_pdatas *datas)
 	usleep(datas->t_eat * 1000);
 	pthread_mutex_unlock(&(philo->rightf->mutex));
 	pthread_mutex_unlock(&(philo->leftf->mutex));
+	(philo->c_meal) += 1;
 }
 
 void	p_sleep(t_philo *philo, t_pdatas *datas)

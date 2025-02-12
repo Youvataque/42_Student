@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/12 14:47:10 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/12 23:18:04 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	*exec_phi(void *arg)
 	pthread_t	check;
 
 	phidat = (t_phidat *)arg;
-	while (!ended(phidat->datas, 0))
+	while (!ended(phidat->datas, 0) && 
+		!is_finished(phidat->philos, phidat->datas))
 	{
 		pthread_create(&check, NULL, check_death, phidat);
 		take_fork(phidat->philos, phidat->datas);
 		eat(phidat->philos, phidat->datas);
 		p_sleep(phidat->philos, phidat->datas);
 		think(phidat->philos, phidat->datas);
+		pthread_detach(check);
 	}
 	return (NULL);
 }
@@ -56,7 +58,7 @@ int	main(int ac, char **av)
 	t_pdatas	datas;
 	t_philo		*philos;
 
-	if (ac >= 5)
+	if (ac >= 5 && ac < 7)
 	{
 		datas.nb_p = ft_atoi(av[1]);
 		datas.t_die = ft_atoi(av[2]);
@@ -67,8 +69,9 @@ int	main(int ac, char **av)
 		pthread_mutex_init(&(datas.write_mutex), NULL);
 		pthread_mutex_init(&(datas.end_mutex), NULL);
 		philos = init_structs(datas.nb_p, datas);
+		datas.max_meal = -1;
 		if (ac == 6)
-			datas.max_eat = ft_atoi(av[5]);
+			datas.max_meal = ft_atoi(av[5]);
 		philosophers(&datas, philos);
 	}
 	else
