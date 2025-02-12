@@ -1,7 +1,7 @@
-NAME = so_long
+NAME = philosophers
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = src/main.c
+SRC = src/main.c src/utils.c src/philo_act.c
 OBJ = $(SRC:%.c=obj/%.o)
 
 all: $(NAME)

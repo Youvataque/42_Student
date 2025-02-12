@@ -6,20 +6,55 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/07 13:31:59 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/12 14:47:10 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	philoso(t_philo datas)
+void	*exec_phi(void *arg)
 {
+	t_phidat	*phidat;
+	pthread_t	check;
 
+	phidat = (t_phidat *)arg;
+	while (!ended(phidat->datas, 0))
+	{
+		pthread_create(&check, NULL, check_death, phidat);
+		take_fork(phidat->philos, phidat->datas);
+		eat(phidat->philos, phidat->datas);
+		p_sleep(phidat->philos, phidat->datas);
+		think(phidat->philos, phidat->datas);
+	}
+	return (NULL);
 }
 
-int main(int ac, char **av)
+void	philosophers(t_pdatas *datas, t_philo *philos)
 {
-	t_philo datas;
+	int			i;
+	t_phidat	*phidat;
+
+	i = 0;
+	while (i < datas->nb_p)
+	{
+		phidat = malloc(sizeof(t_phidat));
+		if (!phidat)
+			return ;
+		phidat->philos = &philos[i];
+		phidat->datas = datas;
+		pthread_create(&philos[i].thread, NULL, exec_phi, (void *)phidat);
+		i++;
+	}
+	i = -1;
+	while (++i < datas->nb_p)
+		if (pthread_join(philos[i].thread, NULL) != 0)
+			return ;
+}
+
+int	main(int ac, char **av)
+{
+	t_pdatas	datas;
+	t_philo		*philos;
 
 	if (ac >= 5)
 	{
@@ -27,11 +62,16 @@ int main(int ac, char **av)
 		datas.t_die = ft_atoi(av[2]);
 		datas.t_eat = ft_atoi(av[3]);
 		datas.t_sleep = ft_atoi(av[4]);
-		if (ac == 6) {
+		datas.t_start = get_time();
+		datas.end = 0;
+		pthread_mutex_init(&(datas.write_mutex), NULL);
+		pthread_mutex_init(&(datas.end_mutex), NULL);
+		philos = init_structs(datas.nb_p, datas);
+		if (ac == 6)
 			datas.max_eat = ft_atoi(av[5]);
-		}
-		philoso(datas);
+		philosophers(&datas, philos);
 	}
 	else
 		return (printf("Error wrong args\n"), 1);
+	return (0);
 }
