@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/12 23:18:04 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/14 18:55:07 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*exec_phi(void *arg)
 	pthread_t	check;
 
 	phidat = (t_phidat *)arg;
+	if (phidat->philos->id % 2 == 0)
+   		usleep(500);
 	while (!ended(phidat->datas, 0) && 
 		!is_finished(phidat->philos, phidat->datas))
 	{

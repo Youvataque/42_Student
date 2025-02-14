@@ -6,7 +6,7 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:02:37 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/12 23:27:04 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/14 19:07:59 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	*check_death(void *arg)
 	phidat = (t_phidat *)arg;
 	while (!ended(phidat->datas, 0))
 	{
+		if (is_finished(phidat->philos, phidat->datas))
+            return NULL;
 		if (is_dead(phidat->philos, phidat->datas))
 		{
 			print(phidat->datas, phidat->philos, "died");
@@ -79,20 +81,12 @@ void	*check_death(void *arg)
 
 void	take_fork(t_philo *philo, t_pdatas *datas)
 {
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(&(philo->leftf->mutex));
-		print(datas, philo, "take l🍴");
-		pthread_mutex_lock(&(philo->rightf->mutex));
-		print(datas, philo, "take r🍴");
-	}
-	else
-	{
-		pthread_mutex_lock(&(philo->rightf->mutex));
-		print(datas, philo, "take r🍴");
-		pthread_mutex_lock(&(philo->leftf->mutex));
-		print(datas, philo, "take l🍴");
-	}
+	pthread_mutex_lock(&(philo->leftf->mutex));
+	print(datas, philo, "take l🍴");
+	if (datas->nb_p == 1)
+		return(usleep(datas->t_die * 1000), (void)0);
+	pthread_mutex_lock(&(philo->rightf->mutex));
+	print(datas, philo, "take r🍴");
 }
 
 void	eat(t_philo *philo, t_pdatas *datas)
@@ -103,6 +97,7 @@ void	eat(t_philo *philo, t_pdatas *datas)
 	pthread_mutex_unlock(&(philo->rightf->mutex));
 	pthread_mutex_unlock(&(philo->leftf->mutex));
 	(philo->c_meal) += 1;
+	usleep(200);
 }
 
 void	p_sleep(t_philo *philo, t_pdatas *datas)

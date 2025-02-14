@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = 
 SRC = src/main.c src/utils.c src/philo_act.c
 OBJ = $(SRC:%.c=obj/%.o)
 
