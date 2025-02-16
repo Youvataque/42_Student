@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
 CFLAGS = 
-SRC = src/main.c src/utils.c src/philo_act.c
+SRC = src/main.c src/utils.c src/philo_act.c src/philo_act2.c
 OBJ = $(SRC:%.c=obj/%.o)
 
 all: $(NAME)

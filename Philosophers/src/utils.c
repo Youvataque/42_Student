@@ -6,12 +6,14 @@
 /*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:59:26 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/14 17:44:27 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/15 17:29:58 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
+/////////////////////////////////////////////////////////////////////////////
+// function for obtain the current time in micro second
 long	get_time(void)
 {
 	struct timeval	tv;
@@ -88,4 +90,15 @@ t_philo	*init_structs(int nb, t_pdatas datas)
 		i++;
 	}
 	return (philos);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// function usleep more fast
+void	ft_usleep(int ms)
+{
+	long int	start;
+
+	start = get_time();
+	while ((get_time() - start) < ms)
+		usleep(ms / 10);
 }
