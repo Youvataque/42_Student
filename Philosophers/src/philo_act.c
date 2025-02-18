@@ -6,22 +6,24 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:02:37 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/18 00:21:53 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:29:18 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// function exexuted in his own thread for check if one philosophers is dead
 void	*check_death(void *arg)
 {
-	t_phidat *phidat;
+	t_phidat	*phidat;
 
 	phidat = (t_phidat *)arg;
 	ft_usleep(phidat->datas->t_die + 1);
 	if (!ended(phidat->datas, 0))
 	{
 		if (is_finished(phidat->philos, phidat->datas))
-            return (NULL);
+			return (NULL);
 		if (is_dead(phidat->philos, phidat->datas))
 		{
 			print(phidat->datas, phidat->philos, "died");
@@ -31,6 +33,8 @@ void	*check_death(void *arg)
 	return (NULL);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Function for take fork, print, wait if necessary
 void	take_fork(t_philo *philo, t_pdatas *datas)
 {
 	t_phidat	phidat;
@@ -40,12 +44,14 @@ void	take_fork(t_philo *philo, t_pdatas *datas)
 	if (datas->nb_p == 1)
 	{
 		phidat = (t_phidat){philo, datas};
-		return(ft_usleep(datas->t_die), check_death(&phidat), (void)0);
+		return (ft_usleep(datas->t_die), check_death(&phidat), (void)0);
 	}
 	pthread_mutex_lock(&(philo->rightf->mutex));
 	print(datas, philo, "take r🍴");
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// function for eat, print , and update meal / t_die counter
 void	eat(t_philo *philo, t_pdatas *datas)
 {
 	print(datas, philo, "eat 🍽️");
@@ -56,12 +62,16 @@ void	eat(t_philo *philo, t_pdatas *datas)
 	(philo->c_meal) += 1;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Function for sleep, print
 void	p_sleep(t_philo *philo, t_pdatas *datas)
 {
 	print(datas, philo, "sleep 😴");
 	ft_usleep(datas->t_sleep);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// function for wait eating : think, print
 void	think(t_philo *philo, t_pdatas *datas)
 {
 	print(datas, philo, "think 💭");

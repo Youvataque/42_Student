@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:39:47 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/15 17:10:27 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:41:48 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ int		ft_atoi(const char *str);
 int		ended(t_pdatas *datas, int update);
 int		is_finished(t_philo *philo, t_pdatas *datas);
 int		is_dead(t_philo *philo, t_pdatas *datas);
+int		check_all(int ac, char **av);
 long	get_time(void);
 void	ft_usleep(int ms);
 t_philo	*init_structs(int nb, t_pdatas datas);
 
 /* actions */
-void	print(t_pdatas* datas, t_philo *philo, char *str);
+void	print(t_pdatas *datas, t_philo *philo, char *str);
 void	*check_death(void *arg);
 void	take_fork(t_philo *philo, t_pdatas *datas);
 void	eat(t_philo *philo, t_pdatas *datas);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:59:26 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/15 17:29:58 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:43:01 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // function for obtain the current time in micro second
 long	get_time(void)
 {
@@ -22,7 +22,7 @@ long	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Converts a string to an integer
 int	ft_atoi(const char *str)
 {
@@ -49,7 +49,7 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // clean if init fail
 int	clean_init(t_philo *philos, t_fourch *fourchs, int i)
 {
@@ -61,7 +61,7 @@ int	clean_init(t_philo *philos, t_fourch *fourchs, int i)
 	return (1);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // init all structs needed by the software
 t_philo	*init_structs(int nb, t_pdatas datas)
 {
@@ -92,7 +92,7 @@ t_philo	*init_structs(int nb, t_pdatas datas)
 	return (philos);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // function usleep more fast
 void	ft_usleep(int ms)
 {

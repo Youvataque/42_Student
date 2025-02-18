@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   philo_act2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:08:38 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/15 17:27:16 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:32:32 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void print(t_pdatas* datas, t_philo *philo, char *str)
+///////////////////////////////////////////////////////////////////////////////
+// function for synch print with required information
+void	print(t_pdatas *datas, t_philo *philo, char *str)
 {
-	long int time;
+	long int	time;
 
 	pthread_mutex_lock(&(datas->write_mutex));
 	time = get_time() - datas->t_start;
@@ -31,6 +33,8 @@ void print(t_pdatas* datas, t_philo *philo, char *str)
 	pthread_mutex_unlock(&(datas->write_mutex));
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// check if the number of meal for one thread is equal to max_meal.
 int	is_finished(t_philo *philo, t_pdatas *datas)
 {
 	if (datas->max_meal != -1)
@@ -41,9 +45,11 @@ int	is_finished(t_philo *philo, t_pdatas *datas)
 	return (0);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// check if one thread(philo) is dead.
 int	is_dead(t_philo *philo, t_pdatas *datas)
 {
-	long diff;
+	long	diff;
 
 	pthread_mutex_lock(&(philo->meal_mutex));
 	diff = get_time() - philo->t_meal;
@@ -51,9 +57,11 @@ int	is_dead(t_philo *philo, t_pdatas *datas)
 	return (diff >= datas->t_die);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Check if the programme is ended if yes all threads are stopped.
 int	ended(t_pdatas *datas, int update)
 {
-	int result;
+	int	result;
 
 	pthread_mutex_lock(&(datas->end_mutex));
 	if (update)

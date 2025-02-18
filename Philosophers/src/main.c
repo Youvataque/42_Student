@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/15 17:46:57 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/18 13:25:00 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// function for launch one philosopher in on thread
 void	*exec_phi(void *arg)
 {
 	t_phidat	*phidat;
@@ -19,9 +21,9 @@ void	*exec_phi(void *arg)
 
 	phidat = (t_phidat *)arg;
 	if (phidat->philos->id % 2 == 0)
-    	ft_usleep(phidat->datas->t_eat / 10);
-	while (!ended(phidat->datas, 0) && 
-		!is_finished(phidat->philos, phidat->datas))
+		ft_usleep(phidat->datas->t_eat / 10);
+	while (!ended(phidat->datas, 0)
+		&& !is_finished(phidat->philos, phidat->datas))
 	{
 		pthread_create(&check, NULL, check_death, phidat);
 		take_fork(phidat->philos, phidat->datas);
@@ -33,6 +35,8 @@ void	*exec_phi(void *arg)
 	return (NULL);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Launcher philosophers software with given args (launch all threads)
 void	philosophers(t_pdatas *datas, t_philo *philos)
 {
 	int			i;
@@ -55,6 +59,8 @@ void	philosophers(t_pdatas *datas, t_philo *philos)
 			return ;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Main func, init all
 int	main(int ac, char **av)
 {
 	t_pdatas	datas;
@@ -62,6 +68,8 @@ int	main(int ac, char **av)
 
 	if (ac >= 5 && ac < 7)
 	{
+		if (!check_all(ac, av))
+			return (printf("Error wrong args\n"), 1);
 		datas.nb_p = ft_atoi(av[1]);
 		datas.t_die = ft_atoi(av[2]);
 		datas.t_eat = ft_atoi(av[3]);
