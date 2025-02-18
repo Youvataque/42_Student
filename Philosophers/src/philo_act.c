@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_act.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:02:37 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/15 17:54:14 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/18 00:21:53 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	*check_death(void *arg)
 	t_phidat *phidat;
 
 	phidat = (t_phidat *)arg;
+	ft_usleep(phidat->datas->t_die + 1);
 	if (!ended(phidat->datas, 0))
 	{
 		if (is_finished(phidat->philos, phidat->datas))
