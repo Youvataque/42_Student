@@ -6,11 +6,29 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/19 16:58:28 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:39:36 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+
+void clean_all(t_pdatas *datas, t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < datas->nb_p)
+	{
+		pthread_mutex_destroy(&(datas->fourchs[i].mutex));
+		pthread_mutex_destroy(&(philos[i].meal_mutex));
+		i++;
+	}
+	free(datas->fourchs);
+	pthread_mutex_destroy(&(datas->end_mutex));
+	pthread_mutex_destroy(&(datas->write_mutex));
+	free(philos);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // function for launch one philosopher in on thread
@@ -56,25 +74,9 @@ void	philosophers(t_pdatas *datas, t_philo *philos)
 	i = -1;
 	while (++i < datas->nb_p)
 		if (pthread_join(philos[i].thread, NULL) != 0)
-			return ;
+			return (free(phidat), (void)0);
 	free(phidat);
-}
-
-void clean_all(t_pdatas *datas, t_philo *philos)
-{
-	int	i;
-
-	i = 0;
-	while (i < datas->nb_p)
-	{
-		pthread_mutex_destroy(&(datas->fourchs[i].mutex));
-		pthread_mutex_destroy(&(philos[i].meal_mutex));
-		i++;
-	}
-	free(datas->fourchs);
-	pthread_mutex_destroy(&(datas->end_mutex));
-	pthread_mutex_destroy(&(datas->write_mutex));
-	free(philos);
+	clean_all(datas, philos);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -101,7 +103,6 @@ int	main(int ac, char **av)
 		if (ac == 6)
 			datas.max_meal = ft_atoi(av[5]);
 		philosophers(&datas, philos);
-		clean_all(&datas, philos);
 	}
 	else
 		return (printf("Error wrong args\n"), 1);
