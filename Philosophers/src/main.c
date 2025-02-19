@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/19 16:26:26 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:35:32 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	*exec_phi(void *arg)
 		think(phidat->philos, phidat->datas);
 		pthread_detach(check);
 	}
+	free(phidat);
 	return (NULL);
 }
 
