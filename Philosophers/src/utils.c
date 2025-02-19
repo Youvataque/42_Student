@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:59:26 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/18 12:43:01 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:22:08 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	clean_init(t_philo *philos, t_fourch *fourchs, int i)
 
 ///////////////////////////////////////////////////////////////////////////////
 // init all structs needed by the software
-t_philo	*init_structs(int nb, t_pdatas datas)
+t_philo	*init_structs(int nb, t_pdatas *datas)
 {
 	int			i;
 	t_fourch	*temp;
@@ -79,13 +79,14 @@ t_philo	*init_structs(int nb, t_pdatas datas)
 	if (!philos)
 		return (free(fourchs), NULL);
 	i = 0;
+	datas->fourchs = fourchs;
 	while (i < nb)
 	{
 		fourchs[i].id = i;
 		if (pthread_mutex_init(&fourchs[i].mutex, NULL) != 0)
 			return (clean_init(philos, fourchs, i), NULL);
 		temp = &fourchs[(i + 1) % nb];
-		philos[i] = (t_philo){i, datas.t_start, 0, NULL, &fourchs[i], temp, {}};
+		philos[i] = (t_philo){i, datas->t_start, 0, (unsigned long int)0, &fourchs[i], temp, {}};
 		pthread_mutex_init(&(philos[i].meal_mutex), NULL);
 		i++;
 	}

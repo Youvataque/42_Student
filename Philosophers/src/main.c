@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/18 13:25:00 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:26:26 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,23 @@ void	philosophers(t_pdatas *datas, t_philo *philos)
 			return ;
 }
 
+void clean_all(t_pdatas *datas, t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < datas->nb_p)
+	{
+		pthread_mutex_destroy(&(datas->fourchs[i].mutex));
+		pthread_mutex_destroy(&(philos[i].meal_mutex));
+		i++;
+	}
+	free(datas->fourchs);
+	pthread_mutex_destroy(&(datas->end_mutex));
+	pthread_mutex_destroy(&(datas->write_mutex));
+	free(philos);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Main func, init all
 int	main(int ac, char **av)
@@ -78,11 +95,12 @@ int	main(int ac, char **av)
 		datas.end = 0;
 		pthread_mutex_init(&(datas.write_mutex), NULL);
 		pthread_mutex_init(&(datas.end_mutex), NULL);
-		philos = init_structs(datas.nb_p, datas);
+		philos = init_structs(datas.nb_p, &datas);
 		datas.max_meal = -1;
 		if (ac == 6)
 			datas.max_meal = ft_atoi(av[5]);
 		philosophers(&datas, philos);
+		clean_all(&datas, philos);
 	}
 	else
 		return (printf("Error wrong args\n"), 1);

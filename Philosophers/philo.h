@@ -6,7 +6,7 @@
 /*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:39:47 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/18 12:41:48 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:21:37 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_pdatas
 	int				t_sleep;
 	int				max_meal;
 	int				end;
+	t_fourch		*fourchs;
 	pthread_mutex_t	end_mutex;
 	pthread_mutex_t	write_mutex;
 }	t_pdatas;
@@ -66,7 +67,7 @@ int		is_dead(t_philo *philo, t_pdatas *datas);
 int		check_all(int ac, char **av);
 long	get_time(void);
 void	ft_usleep(int ms);
-t_philo	*init_structs(int nb, t_pdatas datas);
+t_philo	*init_structs(int nb, t_pdatas *datas);
 
 /* actions */
 void	print(t_pdatas *datas, t_philo *philo, char *str);
