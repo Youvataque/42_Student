@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:59:26 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/19 16:22:08 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:26:07 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ int	clean_init(t_philo *philos, t_fourch *fourchs, int i)
 	return (1);
 }
 
+int	init_temp(t_fourch **fourchs, t_philo **philos, int nb)
+{
+	if (nb <= 0)
+		return (0);
+	*fourchs = malloc(sizeof(t_fourch) * nb);
+	if (!(*fourchs))
+		return (0);
+	*philos = malloc(sizeof(t_philo) * nb);
+	if (!(*philos))
+		return (free(*fourchs), 0);
+	return (1);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // init all structs needed by the software
 t_philo	*init_structs(int nb, t_pdatas *datas)
@@ -70,14 +83,8 @@ t_philo	*init_structs(int nb, t_pdatas *datas)
 	t_fourch	*fourchs;
 	t_philo		*philos;
 
-	if (nb <= 0)
+	if (!init_temp(&fourchs, &philos, nb))
 		return (NULL);
-	fourchs = malloc(sizeof(t_fourch) * nb);
-	if (!fourchs)
-		return (NULL);
-	philos = malloc(sizeof(t_philo) * nb);
-	if (!philos)
-		return (free(fourchs), NULL);
 	i = 0;
 	datas->fourchs = fourchs;
 	while (i < nb)
@@ -86,20 +93,9 @@ t_philo	*init_structs(int nb, t_pdatas *datas)
 		if (pthread_mutex_init(&fourchs[i].mutex, NULL) != 0)
 			return (clean_init(philos, fourchs, i), NULL);
 		temp = &fourchs[(i + 1) % nb];
-		philos[i] = (t_philo){i, datas->t_start, 0, (unsigned long int)0, &fourchs[i], temp, {}};
+		philos[i] = (t_philo){i, datas->t_start, 0, 0, &fourchs[i], temp, {}};
 		pthread_mutex_init(&(philos[i].meal_mutex), NULL);
 		i++;
 	}
 	return (philos);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// function usleep more fast
-void	ft_usleep(int ms)
-{
-	long int	start;
-
-	start = get_time();
-	while ((get_time() - start) < ms)
-		usleep(ms / 10);
 }

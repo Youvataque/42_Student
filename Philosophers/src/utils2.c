@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:36:24 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/18 13:25:14 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:17:00 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,15 @@ int	check_all(int ac, char **av)
 		i++;
 	}
 	return (1);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// function usleep more fast
+void	ft_usleep(int ms)
+{
+	long int	start;
+
+	start = get_time();
+	while ((get_time() - start) < ms)
+		usleep(ms / 10);
 }

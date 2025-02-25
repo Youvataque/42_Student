@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
+/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:36:23 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/19 17:39:36 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/24 20:17:38 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-
-void clean_all(t_pdatas *datas, t_philo *philos)
+void	clean_all(t_pdatas *datas, t_philo *philos)
 {
 	int	i;
 
@@ -40,16 +39,16 @@ void	*exec_phi(void *arg)
 	phidat = (t_phidat *)arg;
 	if (phidat->philos->id % 2 == 0)
 		ft_usleep(phidat->datas->t_eat / 10);
+	pthread_create(&check, NULL, check_death, phidat);
 	while (!ended(phidat->datas, 0)
 		&& !is_finished(phidat->philos, phidat->datas))
 	{
-		pthread_create(&check, NULL, check_death, phidat);
 		take_fork(phidat->philos, phidat->datas);
 		eat(phidat->philos, phidat->datas);
 		p_sleep(phidat->philos, phidat->datas);
 		think(phidat->philos, phidat->datas);
-		pthread_detach(check);
 	}
+	pthread_join(check, NULL);
 	return (NULL);
 }
 
@@ -63,7 +62,7 @@ void	philosophers(t_pdatas *datas, t_philo *philos)
 	i = 0;
 	phidat = malloc(sizeof(t_phidat) * datas->nb_p);
 	if (!phidat)
-			return ;
+		return ;
 	while (i < datas->nb_p)
 	{
 		phidat[i].philos = &philos[i];
