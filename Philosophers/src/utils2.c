@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yseguin <yseguin@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: yseguin <youvataque@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:36:24 by yseguin           #+#    #+#             */
-/*   Updated: 2025/02/24 20:17:00 by yseguin          ###   ########.fr       */
+/*   Updated: 2025/02/25 12:18:25 by yseguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void	ft_usleep(int ms)
 
 	start = get_time();
 	while ((get_time() - start) < ms)
-		usleep(ms / 10);
+		usleep(500);
 }
