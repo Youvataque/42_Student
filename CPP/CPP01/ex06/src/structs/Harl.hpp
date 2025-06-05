@@ -1,3 +1,6 @@
+#ifndef HARL_HPP
+#define HARL_HPP
+
 #include <string>
 #include <iostream>
 
@@ -14,3 +17,5 @@ public:
 	~Harl();
 	void complain(std::string lvl);
 };
+
+#endif
