@@ -1,5 +1,8 @@
 #include "Fixed.hpp"
 
+//vous noterez sans doute une lègère différence dans les logs vs l'attendu en raison 
+// de ce que je pense être une erreur dans le sujet.
+
 Fixed::Fixed() : value(0) {
 	std::cout << "Default constructor called" << std::endl;
 };

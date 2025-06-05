@@ -1,3 +1,6 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 class Fixed {
 private:
 	const static int bit = 8;
@@ -10,3 +13,5 @@ public:
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 };
+
+#endif
