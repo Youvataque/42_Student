@@ -2,10 +2,9 @@ NAME = fixed3
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC_DIRS = src/ src/structs/
 OBJ_DIR = obj
 
-SRC = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
+SRC = src/main.cpp src/structs/Fixed.cpp
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 $(NAME): $(OBJ)

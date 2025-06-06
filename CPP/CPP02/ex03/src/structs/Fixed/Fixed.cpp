@@ -159,6 +159,22 @@ Fixed& Fixed::max(Fixed& v1, Fixed& v2) {
 		return v2;
 }
 
+// bonus très utile pour du calcul
+Fixed Fixed::sqrt(const Fixed& value) {
+	if (value.value < 0)
+		return Fixed(0);
+
+	Fixed x = value;
+	Fixed guess = value;
+	if (guess > Fixed(1))
+		guess = Fixed(1);
+
+	for (int i = 0; i < 25; ++i)
+		guess = (guess + (x / guess)) / Fixed(2);
+
+	return guess;
+}
+
 /////////////////////////////////////////////////////////////////////////////// surcharge d'op
 
 std::ostream& operator<<(std::ostream& out, const Fixed& f) {

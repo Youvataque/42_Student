@@ -1,10 +1,10 @@
-NAME = fixed2
+NAME = bsp
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = src/main.cpp src/structs/Fixed.cpp
+SRC = src/main.cpp src/structs/Fixed/Fixed.cpp src/structs/Point/Point.cpp
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 $(NAME): $(OBJ)

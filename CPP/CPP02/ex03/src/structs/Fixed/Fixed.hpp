@@ -38,6 +38,7 @@ public:
 	void setRawBits( int const raw );
 	int toInt(void) const;
 	float toFloat(void) const;
+	static Fixed sqrt(const Fixed& value);
 	const static Fixed& min(const Fixed& v1, const Fixed& v2);
 	static Fixed& min(Fixed& v1, Fixed& v2);
 	const static Fixed& max(const Fixed& v1, const Fixed& v2);
