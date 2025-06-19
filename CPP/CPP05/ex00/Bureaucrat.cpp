@@ -23,14 +23,19 @@ int			Bureaucrat::getGrade() const {
 	return this->grade;
 };
 
-void		Bureaucrat::upgrade() {
+void		Bureaucrat::incrementGrade() {
 	int newGrade = this->grade - 1;
 	testGrade(newGrade);
 	this->grade = newGrade;
 };
 
-void		Bureaucrat::downgrade() {
+void		Bureaucrat::decrementGrade() {
 	int newGrade = this->grade + 1;
 	testGrade(newGrade);
 	this->grade = newGrade;
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& i) {
+	out << i.getName() << ", bureaucrat grade " << i.getGrade();
+	return out;
+}

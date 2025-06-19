@@ -16,8 +16,8 @@ public:
 
 	std::string getName() const;
 	int			getGrade() const;
-	void		upgrade();
-	void		downgrade();
+	void		incrementGrade();
+	void		decrementGrade();
 
 	class GradeTooHighException : public std::exception {
 		public:
@@ -32,6 +32,10 @@ public:
 				return "Error your grade is > 150\n";
 			}
 	};
+
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& i);
+
 
 #endif
