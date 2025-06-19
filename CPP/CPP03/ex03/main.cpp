@@ -1,36 +1,48 @@
 #include "DiamondTrap.hpp"
+#include <iostream>
+
+void printLine(std::string title = "") {
+	std::cout << "\n\033[1;35m=== " << title << " ===\033[0m\n" << std::endl;
+}
 
 int main() {
-	std::cout << "\n=== CONSTRUCTION ===\n";
-	DiamondTrap d1("Yannis");
-	DiamondTrap d2("Mayleen");
+	printLine("Default constructor");
+	DiamondTrap def;
 
-	std::cout << "\n=== ACTIONS DE BASE ===\n";
-	d1.attack("Training Dummy");
-	d1.takeDamage(20);
-	d1.beRepaired(15);
+	printLine("Constructor with name");
+	DiamondTrap jean("Jean");
 
-	std::cout << "\n=== WHO AM I ? ===\n";
-	d1.whoAmI();
-	d2.whoAmI();
+	printLine("Copy constructor");
+	DiamondTrap jeanCopy(jean);
 
-	std::cout << "\n=== MÉTHODES HÉRITÉES ===\n";
-	d1.guardGate();        // méthode de ScavTrap
-	d2.highFivesGuys();    // méthode de FragTrap
+	printLine("Assignment operator");
+	DiamondTrap dup("Dup");
+	dup = jean;
 
-	std::cout << "\n=== TEST COPIE / AFFECTATION ===\n";
-	DiamondTrap d3(d1);    // copy constructor
-	DiamondTrap d4;
-	d4 = d2;               // assignment operator
+	printLine("Testing attack");
+	jean.attack("Target");
 
-	d3.whoAmI();
-	d4.whoAmI();
+	printLine("Testing takeDamage");
+	jean.takeDamage(40);
 
-	std::cout << "\n=== ATTAQUE EN BOUCLE ===\n";
-	for (int i = 0; i < 55; ++i) {
-		d1.attack("Target X");
-	}
+	printLine("Testing beRepaired");
+	jean.beRepaired(20);
 
-	std::cout << "\n=== DESTRUCTORS ===\n";
+	printLine("Testing whoAmI()");
+	jean.whoAmI();
+
+	printLine("Testing whoAmI() after death");
+	jean.takeDamage(500); // Mort
+	jean.whoAmI();
+
+	printLine("Testing no energy case");
+	DiamondTrap empty("Empty");
+	for (int i = 0; i < 50; ++i)
+		empty.attack("Wall");
+	empty.attack("Ghost");
+	empty.beRepaired(5);
+	empty.whoAmI();
+
+	printLine("Final destruction of all objects");
 	return 0;
 }

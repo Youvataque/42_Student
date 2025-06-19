@@ -32,5 +32,10 @@ FragTrap::~FragTrap() {
 /////////////////////////////////////////////////////////////////////////////// Public
 
 void FragTrap::highFivesGuys() {
-	std::cout << "FragTrap " << this->getName() << " says: High five, guys! ✋\n";
+	if (this->_health <= 0)
+		std::cout << "FragTrap " << this->_name << " is dead and can't high five anyone 😵‍💫" << std::endl;
+	else if (this->_stamina <= 0)
+		std::cout << "FragTrap " << this->_name << " is too tired to high five... 💤" << std::endl;
+	else
+		std::cout << "FragTrap " << this->_name << " throws a BIG HIGH FIVE ✋😎" << std::endl;
 }

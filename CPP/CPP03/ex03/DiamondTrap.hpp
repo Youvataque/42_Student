@@ -15,7 +15,7 @@ public:
 	~DiamondTrap();
 
 	void whoAmI(void);
-	void attack(std::string& name);
+	void attack(const std::string& name);
 };
 
 #endif

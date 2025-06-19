@@ -34,11 +34,16 @@ DiamondTrap::~DiamondTrap() {
 /////////////////////////////////////////////////////////////////////////////// Public
 
 void DiamondTrap::whoAmI() {
-	std::cout << "🧠 I am DiamondTrap: " << _name
+	if (this->_health > 0) {
+		std::cout << "🧠 I am DiamondTrap: " << _name
 	          << ", and my ClapTrap name is: " << ClapTrap::getName()
 	          << std::endl;
+	} else {
+		std::cout << "Who asks the name of a dead man?\n";
+	}
+
 }
 
-void DiamondTrap::attack(std::string& name) {
+void DiamondTrap::attack(const std::string& name) {
 	ScavTrap::attack(name);
 }

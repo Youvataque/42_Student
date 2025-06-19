@@ -1,41 +1,53 @@
 #include "FragTrap.hpp"
+#include <iostream>
+
+void printLine(std::string title = "") {
+	std::cout << "\n\033[1;36m=== " << title << " ===\033[0m\n" << std::endl;
+}
 
 int main() {
-	std::cout << "\n=== CONSTRUCTION ===\n\n";
+	printLine("Default constructor");
+	FragTrap def;
 
-	FragTrap frag1("Fraggy");
-	FragTrap frag2("TankBoy");
+	printLine("Constructor with name");
+	FragTrap alice("Alice");
 
-	std::cout << "\n=== ACTIONS DE BASE ===\n\n";
+	printLine("Copy constructor");
+	FragTrap aliceCopy(alice);
 
-	frag1.attack("DummyBot");
-	frag2.takeDamage(25);
-	frag2.beRepaired(15);
+	printLine("Assignment operator");
+	FragTrap bob("Bob");
+	bob = alice;
 
-	std::cout << "\n=== CAPACITÉ SPÉCIALE ===\n\n";
+	printLine("Testing attack");
+	alice.attack("Bob");
 
-	frag1.highFivesGuys();
-	frag2.highFivesGuys();
+	printLine("Testing takeDamage");
+	bob.takeDamage(30);
 
-	std::cout << "\n=== TEST DE COPIE & AFFECATION ===\n\n";
+	printLine("Testing beRepaired");
+	bob.beRepaired(20);
 
-	FragTrap cloneFrag(frag1);       
-	FragTrap assignedFrag;           
-	assignedFrag = frag2;              
+	printLine("Testing highFivesGuys (normal case)");
+	alice.highFivesGuys();
 
-	std::cout << "\n=== BOUCLE D’ATTAQUE ===\n\n";
+	printLine("Testing highFivesGuys (dead)");
+	bob.takeDamage(200);
+	bob.highFivesGuys();
 
-	for (int i = 0; i < 5; ++i) {
-		frag1.attack("TargetX");
-	}
+	printLine("Testing highFivesGuys (no energy)");
+FragTrap exhausted("Tired");
+	for (int i = 0; i < 100; ++i)
+		exhausted.attack("Nobody");
 
-	std::cout << "\n=== ÉNERGIE ÉPUISÉE ? ===\n\n";
+	exhausted.highFivesGuys();
 
-	for (int i = 0; i < 100; ++i) {
-		frag1.attack("LastTarget");
-	}
+	printLine("Testing beRepaired (no energy)");
+	exhausted.beRepaired(5);
 
-	std::cout << "\n=== DESTRUCTION AUTOMATIQUE ===\n\n";
+	printLine("Testing attack (no energy)");
+	exhausted.attack("Ghost");
 
+	printLine("Final destruction of all objects");
 	return 0;
 }

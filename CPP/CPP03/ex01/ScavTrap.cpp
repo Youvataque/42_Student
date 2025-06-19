@@ -32,5 +32,9 @@ ScavTrap::~ScavTrap() {
 /////////////////////////////////////////////////////////////////////////////// Public
 
 void ScavTrap::guardGate() {
-	std::cout << "ScavTrap " << this->getName() << " has entered Gate keeper mode.\n";
+	if (this->_health > 0) {
+		std::cout << "ScavTrap " << this->getName() << " has entered Gate keeper mode.\n";
+	} else {
+		std::cout << "ScavTrap " << this->getName() << " can't enter in Gate keeper mode, he's dead !\n";
+	}
 }
