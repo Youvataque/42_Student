@@ -1,7 +1,9 @@
 #include "Dog.hpp"
 
 Dog::Dog() : Animal(){
+	const std::string ideas[100] = {"pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser", "pute", "taper", "manger", "chocholat", "casser" ,"pute", "taper", "manger", "chocholat", "casser"};
 	this->type = "Dog";
+	this->brain = new Brain(ideas);
 	std::cout << "Dog default constructor called" << std::endl;
 };
 
@@ -11,6 +13,7 @@ Dog::Dog(const Dog &other) : Animal(other) {
 
 Dog::~Dog() {
 	std::cout << "Dog destructor called" << std::endl;
+	delete brain;
 }
 
 Dog& Dog::operator=(const Dog& other) {
@@ -23,4 +26,8 @@ Dog& Dog::operator=(const Dog& other) {
 
 void Dog::makeSound() const {
 	std::cout << "DOG IS ANGRY, WOUF !\n";
+}
+
+Brain& Dog::getBrain() const {
+	return *this->brain;
 }

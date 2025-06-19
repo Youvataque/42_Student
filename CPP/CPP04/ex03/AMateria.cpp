@@ -13,7 +13,9 @@ AMateria& AMateria::operator=(const AMateria& other) {
 	return *this;
 };
 
-AMateria::~AMateria() {};
+AMateria::~AMateria() {
+	std::cout << "AMateria (" << this->type << ") destroyed\n";
+};
 
 const std::string& AMateria::getType() const {
 	return this->type;

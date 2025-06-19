@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 $(NAME): $(OBJ)

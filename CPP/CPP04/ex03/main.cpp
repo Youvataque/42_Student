@@ -1,62 +1,86 @@
-#include <iostream>
-#include "Character.hpp"
 #include "MateriaSource.hpp"
+#include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
 
+void printLine(const std::string& title) {
+	std::cout << "\n\033[1;36m=== " << title << " ===\033[0m\n" << std::endl;
+}
+
 int main() {
-	std::cout << "=== Création de la source de materia ===\n";
+	printLine("Créer une source de matéria");
 	IMateriaSource* src = new MateriaSource();
 
-	std::cout << "=== Apprentissage de Ice et Cure ===\n";
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 
-	std::cout << "=== Création du personnage 'me' ===\n";
+	// Ce 5e apprentissage ne doit rien faire (slots pleins)
+	src->learnMateria(new Ice());
+
+	printLine("Créer un personnage");
 	ICharacter* me = new Character("me");
 
-	std::cout << "=== Création de 2 materia depuis la source ===\n";
-	AMateria* tmp1 = src->createMateria("ice");
-	AMateria* tmp2 = src->createMateria("cure");
+	printLine("Créer des matéria et les équiper");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
 
-	std::cout << "=== Équipement de ces 2 materia ===\n";
-	me->equip(tmp1);
-	me->equip(tmp2);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
 
-	std::cout << "=== Création du personnage cible 'bob' ===\n";
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+
+	// Cette matéria ne sera pas équipée (inventaire plein)
+	tmp = src->createMateria("ice");
+	me->equip(tmp); // ne doit rien faire
+
+	printLine("Créer une cible : bob");
 	ICharacter* bob = new Character("bob");
 
-	std::cout << "=== Utilisation des materia ===\n";
+	printLine("Utiliser les matérias");
 	me->use(0, *bob); // ice
 	me->use(1, *bob); // cure
+	me->use(2, *bob); // ice
+	me->use(3, *bob); // cure
 
-	std::cout << "=== Test d’index invalide ===\n";
-	me->use(4, *bob);
-	me->use(-1, *bob);
+	printLine("Tester index invalide");
+	me->use(4, *bob); // rien
+	me->use(-1, *bob); // rien
 
-	std::cout << "=== Unequip de l’index 1 (cure) ===\n";
-	me->unequip(1);
-	me->use(1, *bob);  // rien ne se passe
+	printLine("Unequip un slot et test");
+	// On récupère le pointeur pour delete à la main
+	AMateria* toDelete = src->createMateria("ice");
+	me->equip(toDelete);
+	me->unequip(1); // On enlève l'ancien cure
 
-	std::cout << "=== Test de clone indirect ===\n";
-	AMateria* cloned = tmp1->clone();
-	std::cout << "Clone de ice : " << cloned->getType() << std::endl;
+	delete toDelete; // Important !
 
-	std::cout << "=== Test du constructeur de copie ===\n";
-	Character copy1(*(Character*)me);
-	copy1.use(0, *bob);  // ice doit marcher
-	copy1.use(1, *bob);  // rien (slot 1 est vide chez 'me')
+	printLine("Utiliser un slot unequipé");
+	me->use(1, *bob); // ne doit rien faire
 
-	std::cout << "=== Test de l’opérateur d’affectation ===\n";
-	Character copy2("copy2");
-	copy2 = *(Character*)me;
-	copy2.use(0, *bob);
+	printLine("Deep copy de personnage");
+	Character* original = new Character("original");
+	original->equip(src->createMateria("cure"));
 
-	std::cout << "=== Libération mémoire ===\n";
-	delete src;
+	Character* clone = new Character(*original); // copy constructor
+
+	printLine("Test d'utilisation clone et original");
+	original->use(0, *clone);
+	clone->use(0, *original);
+
+	printLine("Nettoyage");
 	delete me;
 	delete bob;
-	delete cloned;
+	delete src;
+	delete original;
+	delete clone;
 
+	printLine("Fin du programme ex03");
 	return 0;
 }

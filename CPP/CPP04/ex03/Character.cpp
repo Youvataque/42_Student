@@ -63,6 +63,7 @@ std::string const & Character::getName() const {
 void Character::equip(AMateria* m) {
 	for (int i = 0; i < 4; i++) {
 		if (this->inventory[i] == NULL) {
+			std::cout << "equip: materia " << m->getType() << " added in slot x\n";
 			this->inventory[i] = m;
 			break ;
 		}
@@ -72,6 +73,7 @@ void Character::equip(AMateria* m) {
 void Character::unequip(int idx) {
 	if (idx >= 0 && idx < 4) {
 		if (this->inventory[idx] != NULL) {
+			std::cout << "unequip: slot " << idx << " cleared\n";
 			this->trash[this->trashI] = this->inventory[idx];
 			this->inventory[idx] = NULL;
 			this->trashI++;

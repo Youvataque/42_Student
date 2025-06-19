@@ -1,17 +1,33 @@
+#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include <iostream>
+
+void printLine(std::string title) {
+	std::cout << "\n\033[1;32m=== " << title << " ===\033[0m\n" << std::endl;
+}
 
 int main() {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
-	delete i;
-	delete j;
-	delete meta;
+	printLine("Instanciations");
+
+	const Animal* a = new Animal();
+	const Animal* dog = new Dog();
+	const Animal* cat = new Cat();
+
+	printLine("Type check");
+	std::cout << "Animal: " << a->getType() << std::endl;
+	std::cout << "Dog: " << dog->getType() << std::endl;
+	std::cout << "Cat: " << cat->getType() << std::endl;
+
+	printLine("Make sounds");
+	a->makeSound();    // Should call Animal::makeSound()
+	dog->makeSound();  // Should call Animal::makeSound() too (BUG)
+	cat->makeSound();  // Should call Animal::makeSound() too (BUG)
+
+	printLine("Destruction");
+	delete a;
+	delete dog;
+	delete cat;
+
 	return 0;
 }
