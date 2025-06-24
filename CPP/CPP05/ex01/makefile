@@ -1,11 +1,11 @@
-NAME = poly
+NAME = bureaucrat
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
-OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
+SRC = main.cpp Bureaucrat.cpp
+OBJ = $(SRC:.cpp = .o)
 all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^

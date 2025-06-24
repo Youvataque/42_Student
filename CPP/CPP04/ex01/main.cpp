@@ -7,7 +7,15 @@ void printLine(const std::string& title) {
 	std::cout << "\n\033[1;33m=== " << title << " ===\033[0m\n" << std::endl;
 }
 
+void test() {
+	Dog dog;
+	Dog temp;
+	temp = dog;
+}
+
 int main() {
+	printLine("Test de destruction préliminaire");
+	test();
 	printLine("Création d'un tableau d'Animal*");
 
 	const int size = 6;

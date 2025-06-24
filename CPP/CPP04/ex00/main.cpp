@@ -1,4 +1,6 @@
 #include "Animal.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
@@ -13,6 +15,7 @@ int main() {
 	const Animal* a = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
+	const WrongAnimal* cat2 = new WrongCat();
 
 	printLine("Type check");
 	std::cout << "Animal: " << a->getType() << std::endl;
@@ -23,11 +26,13 @@ int main() {
 	a->makeSound();    // Should call Animal::makeSound()
 	dog->makeSound();  // Should call Animal::makeSound() too (BUG)
 	cat->makeSound();  // Should call Animal::makeSound() too (BUG)
+	cat2->makeSound();
 
 	printLine("Destruction");
 	delete a;
 	delete dog;
 	delete cat;
+	delete cat2;
 
 	return 0;
 }
