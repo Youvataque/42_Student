@@ -1,18 +1,27 @@
 #include "Character.hpp"
 
 Character::Character() : name("default"), trashI(0) {
+	std::cout << "Character constructor\n";
 	for (int i = 0; i < 1000; i++) {
 		this->trash[i] = NULL;
+	}
+	for (int i = 0; i < 4; i++) {
+		this->inventory[i] = NULL;
 	}
 };
 
 Character::Character(const std::string& name) : name(name), trashI(0) {
+	std::cout << "Character constructor with name\n";
 	for (int i = 0; i < 1000; i++) {
 		this->trash[i] = NULL;
+	}
+	for (int i = 0; i < 4; i++) {
+		this->inventory[i] = NULL;
 	}
 };
 
 Character::Character(const Character& other) {
+	std::cout << "Character copy constructor\n";
 	this->name = other.name;
 	this->trashI = 0;
 	for (int i = 0; i < 4; i++) {
@@ -28,6 +37,7 @@ Character::Character(const Character& other) {
 
 Character& Character::operator=(const Character& other) {
 	if (this != &other) {
+		std::cout << "Character assign constructor\n";
 		this->name = other.name;
 		this->trashI = 0;
 		for (int i = 0; i < 4; i++) {
@@ -83,6 +93,9 @@ void Character::unequip(int idx) {
 
 void Character::use(int idx, ICharacter& target) {
 	if (idx >= 0 && idx < 4 && this->inventory[idx] != NULL) {
+		std::cout << "use AMateria on a target !\n";
 		this->inventory[idx]->use(target);
+	} else {
+		std::cout << "can't use AMateria, error !\n";
 	}
 };
