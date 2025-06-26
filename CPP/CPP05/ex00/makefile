@@ -5,7 +5,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJ_DIR = obj
 
 SRC = main.cpp Bureaucrat.cpp
-OBJ = $(SRC:.cpp = .o)
+OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^

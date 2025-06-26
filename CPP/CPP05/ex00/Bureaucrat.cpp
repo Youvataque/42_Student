@@ -8,6 +8,8 @@ void Bureaucrat::testGrade(int grade) const {
 	}
 }
 
+Bureaucrat::Bureaucrat(): name(name), grade(150) {}
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name) {
 	testGrade(grade);
 	this->grade = grade;

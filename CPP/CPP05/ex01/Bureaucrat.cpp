@@ -8,6 +8,8 @@ void Bureaucrat::testGrade(int grade) const {
 	}
 }
 
+Bureaucrat::Bureaucrat(): name("Default"), grade(150) {}
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name) {
 	testGrade(grade);
 	this->grade = grade;
@@ -36,6 +38,19 @@ void		Bureaucrat::decrementGrade() {
 	testGrade(newGrade);
 	this->grade = newGrade;
 };
+
+void		Bureaucrat::signForm(Form& form) {
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->name << " signs " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->name << " cannot sign " << form.getName() << " because: " << e.what() << std::endl;
+	}
+
+}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	if (this != &other) {

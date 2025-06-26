@@ -12,6 +12,7 @@ private:
 	void		testGrade(int grade) const;
 public:
 	/////////////////////////////////////////////////////////////////////////// constructeur
+	Bureaucrat();
 	Bureaucrat(const std::string, int grade);
 	Bureaucrat(const Bureaucrat& other);
 	~Bureaucrat();
