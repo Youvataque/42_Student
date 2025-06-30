@@ -43,7 +43,7 @@ int			AForm::getExecGrade() const {
 /////////////////////////////////////////////////////////////////////////// méthodes
 void		AForm::beSigned(const Bureaucrat& user) {
 	if (this->_isSigned) {
-		throw AFormSignedException();
+		throw SignedException();
 	}
 	if (user.getGrade() <= this->_signGrade) {
 		this->_isSigned = true;

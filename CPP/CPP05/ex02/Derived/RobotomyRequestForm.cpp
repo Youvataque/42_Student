@@ -10,12 +10,15 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AFo
 };
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-	std::cout << "Shru destructor\n";
+	std::cout << "Rob destructor\n";
 };
 
 /////////////////////////////////////////////////////////////////////////// méthodes
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
+	if (this->getStatus() == false) {
+		throw RobotomyRequestForm::NotSignedException();
+	}
 	if (executor.getGrade() > this->getExecGrade()) {
 		throw RobotomyRequestForm::GradeTooLowException();
 	}

@@ -2,6 +2,7 @@
 #include "Bureaucrat.hpp"
 #include "Derived/ShrubberyCreationForm.hpp"
 #include "Derived/RobotomyRequestForm.hpp"
+#include "Derived/PresidentialPardonForm.hpp"
 
 void printTitle(const std::string& title) {
 	std::cout << "\033[1;32m\n=========== " << title << " ===========\033[0m\n";
@@ -62,6 +63,40 @@ int main() {
 
 	printTitle("FINAL ROBOTOMY STATUS");
 	std::cout << robotForm << std::endl;
+
+	printTitle("PRESIDENTIAL FORM CREATION (no log here)");
+	PresidentialPardonForm presForm("Arthur Dent");
+	Bureaucrat zaphod("Zaphod", 5); // Peut tout faire
+
+	printTitle("PRESIDENTIAL STATUS");
+	std::cout << presForm << std::endl;
+
+	printTitle("ZAPHOD TRY EXECUTES PRESIDENTIAL FORM BEFORE SIGN");
+	zaphod.executeForm(presForm);
+
+	printTitle("BOB TRYING TO SIGN PRESIDENTIAL");
+	bob.signForm(presForm);
+
+	printTitle("MIKE TRYING TO SIGN PRESIDENTIAL");
+	mike.signForm(presForm);
+
+	printTitle("ALICE TRYING TO SIGN PRESIDENTIAL");
+	alice.signForm(presForm);
+
+	printTitle("ZAPHOD SIGNS PRESIDENTIAL");
+	zaphod.signForm(presForm);
+
+	printTitle("BOB EXECUTES PRESIDENTIAL FORM");
+	bob.executeForm(presForm);
+
+	printTitle("ALICE EXECUTES PRESIDENTIAL FORM");
+	alice.executeForm(presForm);
+
+	printTitle("ZAPHOD EXECUTES PRESIDENTIAL FORM");
+	zaphod.executeForm(presForm);
+
+	printTitle("FINAL PRESIDENTIAL STATUS");
+	std::cout << presForm << std::endl;
 
 	return 0;
 }

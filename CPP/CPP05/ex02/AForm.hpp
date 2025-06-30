@@ -46,7 +46,14 @@ public:
 			}
 	};
 
-	class AFormSignedException : public std::exception {
+	class NotSignedException : public std::exception {
+		public:
+			const char* what() const throw() {
+				return "AForm: Error the form is not signed ! Can't execute.\n";
+			}
+	};
+
+	class SignedException : public std::exception {
 		public:
 			const char* what() const throw() {
 				return "AForm: Error the form is already signed !\n";

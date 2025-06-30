@@ -42,6 +42,9 @@ bool	ShrubberyCreationForm::_writeAfile() const {
 };
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+	if (this->getStatus() == false) {
+		throw ShrubberyCreationForm::NotSignedException();
+	}
 	if (executor.getGrade() > this->getExecGrade()) {
 		throw ShrubberyCreationForm::GradeTooLowException();
 	}

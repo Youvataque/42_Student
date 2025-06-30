@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = AForm.cpp Bureaucrat.cpp Derived/ShrubberyCreationForm.cpp Derived/RobotomyRequestForm.cpp main.cpp
+SRC = AForm.cpp Bureaucrat.cpp Derived/ShrubberyCreationForm.cpp Derived/RobotomyRequestForm.cpp Derived/PresidentialPardonForm.cpp main.cpp
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 $(NAME): $(OBJ)
