@@ -46,6 +46,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 		throw ShrubberyCreationForm::GradeTooLowException();
 	}
 	bool result = _writeAfile();
+	std::cout << "✅ " << executor.getName() << " successfully execute " << this->getName() << " at " << this->_target << std::endl;
 	if (!result) {
 		throw ShrubberyCreationForm::runtimeErrorException();
 	}

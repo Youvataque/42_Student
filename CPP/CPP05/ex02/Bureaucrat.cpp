@@ -42,8 +42,8 @@ void		Bureaucrat::decrementGrade() {
 void		Bureaucrat::signForm(AForm& form) {
 	try
 	{
+		std::cout << this->name << "🕰️ trying to sign " << form.getName() << std::endl;
 		form.beSigned(*this);
-		std::cout << "✅ " << this->name << " signed " << form.getName() << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -54,8 +54,8 @@ void		Bureaucrat::signForm(AForm& form) {
 void		Bureaucrat::executeForm(AForm& form) {
 	try
 	{
+		std::cout << this->name << "🕰️ trying to execute " << form.getName() << std::endl;
 		form.execute(*this);
-		std::cout << "✅ " << this->name << " execute " << form.getName() << std::endl;
 	}
 	catch (std::exception &e)
 	{

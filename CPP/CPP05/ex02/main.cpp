@@ -1,12 +1,14 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include "Derived/ShrubberyCreationForm.hpp"
+#include "Derived/RobotomyRequestForm.hpp"
 
 void printTitle(const std::string& title) {
 	std::cout << "\033[1;32m\n=========== " << title << " ===========\033[0m\n";
 }
 
 int main() {
+	std::srand(std::time(NULL));
 	printTitle("FORM CREATION (no log here)");
 	Bureaucrat mike("Mike", 137);  // peut signer mais pas exécuter
 	Bureaucrat bob("Bob", 140);    // trop bas pour éxécuter
@@ -34,6 +36,32 @@ int main() {
 
 	printTitle("FINAL STATUS");
 	std::cout << form << std::endl;
+
+	printTitle("ROBOTOMY FORM CREATION (no log here)");
+	RobotomyRequestForm robotForm("Yannis");
+	Bureaucrat mayleen("mayleen", 25);
+
+	printTitle("ROBOTOMY STATUS");
+	std::cout << robotForm << std::endl;
+
+	printTitle("BOB TRYING TO SIGN ROBOTOMY");
+	bob.signForm(robotForm);
+
+	printTitle("MIKE TRYING TO SIGN ROBOTOMY");
+	mike.signForm(robotForm);
+
+	printTitle("BOB EXECUTES ROBOTOMY FORM");
+	bob.executeForm(robotForm);
+
+	printTitle("ALICE EXECUTES ROBOTOMY FORM");
+	alice.executeForm(robotForm);
+
+	printTitle("MAYLEEN SIGN & EXECUTES ROBOTOMY FORM");
+	mayleen.signForm(robotForm);
+	mayleen.executeForm(robotForm);
+
+	printTitle("FINAL ROBOTOMY STATUS");
+	std::cout << robotForm << std::endl;
 
 	return 0;
 }
