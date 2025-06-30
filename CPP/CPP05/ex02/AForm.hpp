@@ -1,5 +1,5 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AForm_HPP
+#define AForm_HPP
 
 #include <string>
 #include <iostream>
@@ -7,19 +7,19 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 private:
-	const std::string	name;
-	bool				isSigned;
-	const int 			signGrade;
-	const int 			execGrade;
-	void			testGrade() const;
+	const std::string	_name;
+	bool				_isSigned;
+	const int 			_signGrade;
+	const int 			_execGrade;
+	void				_testGrade() const;
 public:
 	/////////////////////////////////////////////////////////////////////////// constructeur
-	Form();
-	Form(std::string name, int signGrade, int execGrade);
-	Form(const Form& other);
-	~Form();
+	AForm();
+	AForm(std::string name, int signGrade, int execGrade);
+	AForm(const AForm& other);
+	virtual ~AForm();
 
 	/////////////////////////////////////////////////////////////////////////// getter / setter
 	std::string		getName() const;
@@ -29,33 +29,34 @@ public:
 
 	/////////////////////////////////////////////////////////////////////////// méthodes
 	void			beSigned(const Bureaucrat& bureau);
+	virtual void			execute(Bureaucrat const & executor) const = 0;
 
 	/////////////////////////////////////////////////////////////////////////// exeception
 	class GradeTooHighException : public std::exception {
 		public:
 			const char* what() const throw() {
-				return "Form: Error your grade is too high.\n";
+				return "AForm: Error your grade is too high.\n";
 			}
 	};
 
 	class GradeTooLowException : public std::exception {
 		public:
 			const char* what() const throw() {
-				return "Form: Error your grade is too low.\n";
+				return "AForm: Error your grade is too low.\n";
 			}
 	};
 
-	class FormSignedException : public std::exception {
+	class AFormSignedException : public std::exception {
 		public:
 			const char* what() const throw() {
-				return "Form: Error the form is already signed !\n";
+				return "AForm: Error the form is already signed !\n";
 			}
 	};
 
 	/////////////////////////////////////////////////////////////////////////// surcharge op
-	Form& operator=(const Form& other);
+	AForm& operator=(const AForm& other);
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& i);
+std::ostream& operator<<(std::ostream& out, const AForm& i);
 
 #endif

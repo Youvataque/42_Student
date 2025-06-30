@@ -31,14 +31,14 @@ public:
 	class GradeTooHighException : public std::exception {
 		public:
 			const char* what() const throw() {
-				return "Error your grade is < 1\n";
+				return "Bureaucrat: Error your grade is < 1\n";
 			}
 	};
 
 	class GradeTooLowException : public std::exception {
 		public:
 			const char* what() const throw() {
-				return "Error your grade is > 150\n";
+				return "Bureaucrat: Error your grade is > 150\n";
 			}
 	};
 

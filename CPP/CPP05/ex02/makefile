@@ -1,10 +1,10 @@
-NAME = Form
+NAME = AForm
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = Form.cpp Bureaucrat.cpp main.cpp 
+SRC = AForm.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp main.cpp
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 $(NAME): $(OBJ)
