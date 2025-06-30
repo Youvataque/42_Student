@@ -1,4 +1,4 @@
-NAME = AForm
+NAME = exec
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
