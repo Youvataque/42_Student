@@ -1,15 +1,24 @@
 #include "ScalarConverter.hpp"
 #include <iostream>
 
+#include "ScalarConverter.hpp"
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+// void printline(const std::string& title) {
+// 	std::cout << "\033[1;36m" << title << "\033[0m" << std::endl;
+// }
+
 // int main() {
-// 	std::cout << "=== INT ===" << std::endl;
+// 	printline("=== INT ===");
 // 	ScalarConverter::convert("0");
 // 	ScalarConverter::convert("42");
 // 	ScalarConverter::convert("-2147483648");
 // 	ScalarConverter::convert("2147483647");
 // 	std::cout << std::endl;
 
-// 	std::cout << "=== FLOAT ===" << std::endl;
+// 	printline("=== FLOAT ===");
 // 	ScalarConverter::convert("42.0f");
 // 	ScalarConverter::convert("3.14f");
 // 	ScalarConverter::convert("-0.0f");
@@ -18,7 +27,7 @@
 // 	ScalarConverter::convert("nanf");
 // 	std::cout << std::endl;
 
-// 	std::cout << "=== DOUBLE ===" << std::endl;
+// 	printline("=== DOUBLE ===");
 // 	ScalarConverter::convert("42.0");
 // 	ScalarConverter::convert("3.14");
 // 	ScalarConverter::convert("+inf");
@@ -26,13 +35,13 @@
 // 	ScalarConverter::convert("nan");
 // 	std::cout << std::endl;
 
-// 	std::cout << "=== CHAR ===" << std::endl;
+// 	printline("=== CHAR ===");
 // 	ScalarConverter::convert("'a'");
 // 	ScalarConverter::convert("'0'");
 // 	ScalarConverter::convert("'\\n'");
 // 	std::cout << std::endl;
 
-// 	std::cout << "=== INVALID ===" << std::endl;
+// 	printline("=== INVALID ===");
 // 	ScalarConverter::convert("coucou");
 // 	ScalarConverter::convert("42..0");
 // 	ScalarConverter::convert("nanfffff");
