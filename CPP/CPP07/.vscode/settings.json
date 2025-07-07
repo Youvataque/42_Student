@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"ostream": "cpp"
+		"ostream": "cpp",
+		"__assertion_handler": "cpp",
+		"new": "cpp",
+		"string": "cpp",
+		"tuple": "cpp",
+		"typeinfo": "cpp"
 	}
 }
