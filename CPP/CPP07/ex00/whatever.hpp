@@ -1,5 +1,5 @@
-#ifndef FUNC_HPP
-#define FUNC_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
 template <typename T>
 void swap(T& a, T& b) {
