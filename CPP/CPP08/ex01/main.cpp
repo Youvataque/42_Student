@@ -74,7 +74,6 @@ int main() {
     std::cout << "Original : " << original;
     std::cout << "Copie : " << copie;
     std::cout << "Affectation : " << affectation;
-
     // Test sur un grand nombre d'éléments (10 000)
     printSection("Test performance 10 000 éléments", BLUE);
     Span big(10000);
@@ -92,6 +91,18 @@ int main() {
     std::cout << "Contenu : " << identiques;
     std::cout << "Shortest span : " << identiques.shortestSpan() << std::endl;
     std::cout << "Longest span : " << identiques.longestSpan() << std::endl;
+
+    printSection("Test addRange (vector et tableau)", CYAN);
+    Span s3(10);
+    std::vector<int> v;
+    v.push_back(100);
+    v.push_back(200);
+    v.push_back(300);
+    v.push_back(400);
+    s3.addRange(v.begin(), v.end());
+    std::cout << "Contenu après addRange (vector + tableau) : " << s3;
+    std::cout << "Shortest span : " << s3.shortestSpan() << std::endl;
+    std::cout << "Longest span : " << s3.longestSpan() << std::endl;
 
     printSection("Fin des tests", GREEN);
     return 0;

@@ -37,6 +37,14 @@ void			Span::addNumber(int nb) {
 	}
 }
 
+void			Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+	while (begin != end) {
+		addNumber(*begin);
+		begin++;
+	} 
+}
+
+
 unsigned int	Span::shortestSpan() {
 	if (_length < 2)
 		throw std::range_error("Erreur: cette lsite contient moins de 2 éléments !");

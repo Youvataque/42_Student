@@ -26,6 +26,7 @@ public:
 
 	/////////////////////////////////////////////////////////////////////////// méthodes
 	void			addNumber(int nb);
+	void			addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	unsigned int	shortestSpan();
 	unsigned int	longestSpan();
 
