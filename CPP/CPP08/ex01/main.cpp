@@ -94,6 +94,7 @@ int main() {
 
     printSection("Test addRange (vector et tableau)", CYAN);
     Span s3(10);
+	Span s4(2);
     std::vector<int> v;
     v.push_back(100);
     v.push_back(200);
@@ -103,7 +104,12 @@ int main() {
     std::cout << "Contenu après addRange (vector + tableau) : " << s3;
     std::cout << "Shortest span : " << s3.shortestSpan() << std::endl;
     std::cout << "Longest span : " << s3.longestSpan() << std::endl;
-
+	std::cout << "Ajout à s4 qui est plus petit :\n";
+	try {
+		s4.addRange(v.begin(), v.end());
+	} catch (std::exception& error) {
+		std::cout << error.what() << std::endl;
+	}
     printSection("Fin des tests", GREEN);
     return 0;
 }

@@ -38,6 +38,9 @@ void			Span::addNumber(int nb) {
 }
 
 void			Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+	std::size_t len = std::distance(begin, end);
+	if (len > this->_maxLen - this->_length)
+		throw std::out_of_range("Erreur, la liste à ajouter est trop longue !");
 	while (begin != end) {
 		addNumber(*begin);
 		begin++;
