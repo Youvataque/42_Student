@@ -6,11 +6,13 @@
 #include <iostream>
 #include <stdexcept>
 #include <limits>
+#include <sstream>
 
 class Span {
 private:
 	Span();
 	/////////////////////////////////////////////////////////////////////////// méthodes privées
+	std::string		_to_string(double value);
 	/////////////////////////////////////////////////////////////////////////// attributs
 	unsigned int _maxLen;
 	unsigned int _length;

@@ -9,7 +9,7 @@ std::string intToString(int n) {
 
 Zombie* zombieHorde(int N, std::string name) {
 	if (N <= 0)
-		return nullptr;
+		return NULL;
 	Zombie *lst = new Zombie[N];
 	for (int i = 0; i < N; i++) {
 		lst[i].setName(name + intToString(i));

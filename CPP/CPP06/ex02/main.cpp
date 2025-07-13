@@ -1,11 +1,17 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
 #include "Base.hpp"
 
+std::string to_string(int value) {
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
 
 Base* generate(void) {
 	int random = rand() % 3;
@@ -60,7 +66,7 @@ int main() {
 	std::srand(static_cast<unsigned int>(std::time(NULL)));
 
 	for (int i = 0; i < 10; ++i) {
-		printline("Test #" + std::to_string(i + 1));
+		printline("Test #" + to_string(i + 1));
 
 		Base* random = generate();
 

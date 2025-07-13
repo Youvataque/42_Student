@@ -1,6 +1,11 @@
 #include "Span.hpp"
 
 /////////////////////////////////////////////////////////////////////////// méthodes privées
+std::string Span::_to_string(double value) {
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
 
 /////////////////////////////////////////////////////////////////////////// constructeur
 Span::Span() {
@@ -33,7 +38,7 @@ void			Span::addNumber(int nb) {
 		this->_tab.push_back(nb);
 		this->_length++;
 	} else {
-		throw std::out_of_range("Erreur: cette liste est pleine !" + std::to_string(nb));
+		throw std::out_of_range("Erreur: cette liste est pleine !" + _to_string(nb));
 	}
 }
 
