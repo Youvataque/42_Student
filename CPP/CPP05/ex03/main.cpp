@@ -45,7 +45,7 @@ int main() {
 
 	printTitle("Tests d'exceptions");
 	try {
-		if (shrub) stagiaireBureau.executeForm(*shrub); // Trop bas
+		if (shrub) stagiaireBureau.executeForm(*shrub);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -55,7 +55,6 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	// Nettoyage
 	delete shrub;
 	delete robot;
 	delete pardon;

@@ -26,7 +26,7 @@ bool	ShrubberyCreationForm::_writeAfile() const {
 		"  _ -  | |   -_\n",
 		"      // \\\\\n"
 	};
-	std::ofstream file(this->_target + "_shrubbery");
+	std::ofstream file((this->_target + "_shrubbery").c_str());
 
 	if (!file) {
 		return false;

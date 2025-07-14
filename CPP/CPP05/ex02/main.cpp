@@ -9,7 +9,7 @@ void printTitle(const std::string& title) {
 }
 
 int main() {
-	std::srand(std::time(NULL));
+	std::srand(time(NULL));
 	printTitle("FORM CREATION (no log here)");
 	Bureaucrat mike("Mike", 137);  // peut signer mais pas exécuter
 	Bureaucrat bob("Bob", 140);    // trop bas pour éxécuter
