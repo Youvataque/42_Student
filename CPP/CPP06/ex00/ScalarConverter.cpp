@@ -35,7 +35,7 @@ bool ScalarConverter::isChar(const std::string& literal) {
 
 bool ScalarConverter::isInt(const std::string& literal) {
 	char* end;
-	long val = std::strtol(literal.c_str(), &end, 10);
+	long val = strtol(literal.c_str(), &end, 10);
 	return *end == '\0' && val >= INT_MIN && val <= INT_MAX;
 }
 
@@ -55,6 +55,9 @@ bool ScalarConverter::isDouble(const std::string& literal) {
 	return false;
 }
 
+bool isnan(double x) { return x != x; }
+bool isinf(double x) { return !isnan(x) && isnan(x - x); }
+
 /////////////////////////////////////////////////////////////////////////// méthodes privées (printers)
 std::string ScalarConverter::charValue(std::string literal) {
 	std::string result;
@@ -64,13 +67,13 @@ std::string ScalarConverter::charValue(std::string literal) {
 		} else if (isInt(literal)) {
 			result = std::string(1, static_cast<char>(std::strtol(literal.c_str(), NULL, 10)));
 		} else if (isFloat(literal)) {
-			float f = std::atof(literal.c_str());
-			if (std::isnan(f) || std::isinf(f))
+			float f = atof(literal.c_str());
+			if (isnan(f) || isinf(f))
 				return "impossible";
 			result = std::string(1, static_cast<char>(f));
 		} else if (isDouble(literal)) {
-			double d = std::atof(literal.c_str());
-			if (std::isnan(d) || std::isinf(d))
+			double d = atof(literal.c_str());
+			if (isnan(d) || isinf(d))
 				return "impossible";
 			result = std::string(1, static_cast<char>(d));
 		} else {
@@ -94,14 +97,14 @@ std::string ScalarConverter::intValue(std::string literal) {
 	if (isChar(literal)) {
 		oss << std::fixed << std::setprecision(0) << static_cast<int>(literal[1]);
 	} else if (isInt(literal)) {
-		oss << std::fixed << std::setprecision(0) << static_cast<int>(std::strtol(literal.c_str(), NULL, 10));
+		oss << std::fixed << std::setprecision(0) << static_cast<int>(strtol(literal.c_str(), NULL, 10));
 	} else if (isFloat(literal)) {
-		float f = std::strtof(literal.c_str(), NULL);
-		if (std::isnan(f) || std::isinf(f)) return "impossible";
+		float f = strtof(literal.c_str(), NULL);
+		if (isnan(f) || isinf(f)) return "impossible";
 		oss << std::fixed << std::setprecision(0) << static_cast<int>(f);
 	} else if (isDouble(literal)) {
-		double d = std::strtod(literal.c_str(), NULL);
-		if (std::isnan(d) || std::isinf(d)) return "impossible";
+		double d = strtod(literal.c_str(), NULL);
+		if (isnan(d) || isinf(d)) return "impossible";
 		oss << std::fixed << std::setprecision(0) << static_cast<int>(d);
 	} else {
 		return "Impossible";
@@ -115,7 +118,7 @@ std::string ScalarConverter::floatValue(std::string literal) {
 		if (isChar(literal)) {
 			result << std::fixed << std::setprecision(1) << static_cast<float>(literal[1]);
 		} else if (isInt(literal)) {
-			long intVal = std::strtol(literal.c_str(), NULL, 10);
+			long intVal = strtol(literal.c_str(), NULL, 10);
 			float f = static_cast<float>(intVal);
 			if (static_cast<long>(f) != intVal)
 				return "impossible";
@@ -123,10 +126,10 @@ std::string ScalarConverter::floatValue(std::string literal) {
 		} else if (literal == "nanf" || literal == "+inff" || literal == "-inff") {
 			return literal;
 		} else if (isFloat(literal)) {
-			float f = static_cast<float>(std::atof(literal.c_str()));
+			float f = static_cast<float>(atof(literal.c_str()));
 			result << std::fixed << std::setprecision(1) << f;
 		} else if (isDouble(literal)) {
-			float f = static_cast<float>(std::atof(literal.c_str()));
+			float f = static_cast<float>(atof(literal.c_str()));
 			result << std::fixed << std::setprecision(1) << f;
 		} else {
 			return "Impossible";
@@ -145,14 +148,14 @@ std::string ScalarConverter::doubleValue(std::string literal) {
 		if (isChar(literal)) {
 			result << std::fixed << std::setprecision(1) << static_cast<double>(literal[1]);
 		} else if (isInt(literal)) {
-			result << std::fixed << std::setprecision(1) << static_cast<double>(std::strtol(literal.c_str(), NULL, 10));
+			result << std::fixed << std::setprecision(1) << static_cast<double>(strtol(literal.c_str(), NULL, 10));
 		} else if (literal == "nan" || literal == "+inf" || literal == "-inf") {
 			return literal;
 		} else if (isFloat(literal)) {
-			double d = static_cast<double>(std::atof(literal.c_str()));
+			double d = static_cast<double>(atof(literal.c_str()));
 			result << std::fixed << std::setprecision(1) << d;
 		} else if (isDouble(literal)) {
-			double d = std::atof(literal.c_str());
+			double d = atof(literal.c_str());
 			result << std::fixed << std::setprecision(1) << d;
 		} else {
 			return "Impossible";
