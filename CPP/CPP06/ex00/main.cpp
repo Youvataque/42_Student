@@ -6,9 +6,9 @@
 #include <string>
 #include <iomanip>
 
-// void printline(const std::string& title) {
-// 	std::cout << "\033[1;36m" << title << "\033[0m" << std::endl;
-// }
+void printline(const std::string& title) {
+	std::cout << "\033[1;36m" << title << "\033[0m" << std::endl;
+}
 
 // int main() {
 // 	printline("=== INT ===");
@@ -43,7 +43,7 @@
 
 // 	printline("=== INVALID ===");
 // 	ScalarConverter::convert("coucou");
-// 	ScalarConverter::convert("42..0");
+// 	ScalarConverter::convert("42n");
 // 	ScalarConverter::convert("nanfffff");
 // 	ScalarConverter::convert("2147483648");  // overflow int
 // 	std::cout << std::endl;

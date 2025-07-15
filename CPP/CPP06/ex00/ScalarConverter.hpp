@@ -5,6 +5,8 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <climits>
+#include <cstdlib>
 
 class ScalarConverter {
 private:
@@ -25,7 +27,12 @@ private:
 	static bool			isInt(const std::string& literal);
 	static bool			isFloat(const std::string& literal);
 	static bool 		isDouble(const std::string& literal);
+	static bool			isnan(double x);
+	static bool			isinf(double x);
 	static std::string	_to_string(double value);
+	static std::string	_fixDot(std::string nb);
+	static bool 		_checkStart(const std::string& str);
+
 public:
 	/////////////////////////////////////////////////////////////////////////// méthodes
 	static void convert(const std::string& literal);
