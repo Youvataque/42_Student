@@ -1,6 +1,6 @@
 NAME = exec
 CXX = c++
-CXXFLAGS = -Wall -Werror -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 OBJ_DIR = obj
 
 SRC = main.cpp Base.cpp

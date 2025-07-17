@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdint> // pour uintptr_t
 #include "Serializer.hpp"
 
 void printline(const std::string& title) {
@@ -23,8 +22,8 @@ int main() {
 	          << ", score = " << original.score << " }" << std::endl;
 
 	// Sérialisation
-	uintptr_t raw = Serializer::serialize(&original);
-	std::cout << "Serialized uintptr_t  : " << raw << std::endl;
+	unsigned long raw = Serializer::serialize(&original);
+	std::cout << "Serialized unsigned long  : " << raw << std::endl;
 
 	// Désérialisation
 	Data* restored = Serializer::deserialize(raw);
