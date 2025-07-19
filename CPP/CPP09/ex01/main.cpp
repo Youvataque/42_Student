@@ -10,5 +10,5 @@ int main(int ac, char **av) {
 		std::cerr << "Erreur: bad string !\n";
 		return 1;
 	}
-	
+	std::cout << RPN::calcul(arg);
 }
