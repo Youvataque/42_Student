@@ -45,7 +45,7 @@ bool RPN::checkFormat(std::string arg) {
 	return true;
 }
 
-double	selectOp(double nb1, double nb2, char c) {
+double	RPN::_selectOp(double nb1, double nb2, char c) {
 	switch (c)
 	{
 		case '+':
@@ -77,7 +77,7 @@ double RPN::calcul(std::string arg) {
 			temp.erase(temp.end() - 1);
 			double nb1 = *(temp.end() - 1);
 			temp.erase(temp.end() - 1);
-			double resultat = selectOp(nb1, nb2, arg.at(i));
+			double resultat = _selectOp(nb1, nb2, arg.at(i));
 			temp.push_back(resultat);
 		}
 	}
@@ -86,4 +86,3 @@ double RPN::calcul(std::string arg) {
 	}
 	return temp[0];
 }
-/////////////////////////////////////////////////////////////////////////// exceptions
