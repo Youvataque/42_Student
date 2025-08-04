@@ -65,7 +65,7 @@ double	RPN::_selectOp(double nb1, double nb2, char c) {
 }
 
 double RPN::calcul(std::string arg) {
-	std::vector<double> temp;
+	std::deque<double> temp;
 	for (std::size_t i = 0; i < arg.size(); i++) {
 		if (isdigit(arg.at(i))) {
 			temp.push_back(static_cast<double>(arg.at(i) - '0'));

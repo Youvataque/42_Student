@@ -2,7 +2,7 @@
 #define RPN_HPP
 
 #include <string>
-#include <vector>
+#include <deque>
 #include <iostream>
 
 class RPN {

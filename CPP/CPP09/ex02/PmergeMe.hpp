@@ -1,0 +1,44 @@
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
+
+#include <string>
+#include <iostream>
+#include <vector>
+#include <list>
+#include <algorithm>
+#include <stdexcept>
+
+class PmergeMe {
+private:
+	/////////////////////////////////////////////////////////////////////////// constructeur
+	PmergeMe();
+
+	/////////////////////////////////////////////////////////////////////////// méthodes privées
+	void _selectionV(std::vector<unsigned int>& a);
+	void _selectionL(std::list<unsigned int>& a);
+
+	/////////////////////////////////////////////////////////////////////////// attributs
+	std::vector<unsigned int> _vector;
+	std::list<unsigned int> _list;
+
+public:
+	/////////////////////////////////////////////////////////////////////////// constructeur
+	PmergeMe(std::vector<unsigned int> vector, std::list<unsigned int> list);
+	PmergeMe(const PmergeMe& other);
+	~PmergeMe();
+
+	/////////////////////////////////////////////////////////////////////////// opérateur d'affectation
+	PmergeMe& operator=(const PmergeMe& other);
+
+	/////////////////////////////////////////////////////////////////////////// getter / setter
+	std::vector<unsigned int> getVector() const;
+	std::list<unsigned int> getList() const;
+
+	/////////////////////////////////////////////////////////////////////////// méthodes
+	void sortVector();
+	void sortList();
+	void fordJonsonSort();
+	/////////////////////////////////////////////////////////////////////////// exceptions
+};
+
+#endif

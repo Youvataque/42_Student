@@ -21,26 +21,24 @@ void		BitcoinExchange::_loadDatas() {
 };
 
 bool		BitcoinExchange::_checkDateFormat(std::string date) {
-	std::size_t index;
+	std::size_t index1, index2;
 	if (date.size() != 10) {
 		return false;
 	}
 
-	index = date.find('-');
-	if (index == std::string::npos || index != 4) {
+	index1 = date.find('-');
+	if (index1 == std::string::npos || index1 != 4) {
 		return false;
 	}
-	if (!_checkInt(date.substr(0, index), 2))
+	if (!_checkInt(date.substr(0, index1), 2))
 		return false;
-	if (date.substr(4, 1).find('-') == std::string::npos || date.substr(4, 1).find('-') != 0) {
-		return false;
-	}
-	if (!_checkInt(date.substr(5, 2), 0))
-		return false;
-	if (date.substr(8, 2).size() != 2) {
+	index2 = date.find('-', index1 + 1);
+	if (index2 == std::string::npos || index2 != 7) {
 		return false;
 	}
-	if (!_checkInt(date.substr(8, 2), 1))
+	if (!_checkInt(date.substr(index1 + 1, index2 - index1 - 1), 0))
+		return false;
+	if (!_checkInt(date.substr(index2 + 1, 3), 1))
 		return false;
 	return true;
 };
