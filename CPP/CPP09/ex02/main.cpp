@@ -41,11 +41,19 @@ int main(int argc, char **argv) {
     clock_t end_list = clock();
     double duration_list = static_cast<double>(end_list - start_list) * 1000000.0 / CLOCKS_PER_SEC;
     
+    // std::cout << "After: ";
+    // std::vector<unsigned int> sorted_vec = pm.getVector();
+    // for (size_t i = 0; i < sorted_vec.size(); ++i) {
+    //     std::cout << sorted_vec[i];
+    //     if (i < sorted_vec.size() - 1) std::cout << " ";
+    // }
     std::cout << "After: ";
-    std::vector<unsigned int> sorted_vec = pm.getVector();
-    for (size_t i = 0; i < sorted_vec.size(); ++i) {
-        std::cout << sorted_vec[i];
-        if (i < sorted_vec.size() - 1) std::cout << " ";
+    std::list<unsigned int> sorted_list = pm.getList();
+    std::list<unsigned int>::iterator it = sorted_list.begin();
+    while (it != sorted_list.end()) {
+        std::cout << *it;
+        if (++it != sorted_list.end())
+            std::cout << " ";
     }
     std::cout << std::endl;
     std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " 

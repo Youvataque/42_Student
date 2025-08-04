@@ -140,19 +140,22 @@ void	PmergeMe::sortList() {
 		this->_list.erase(last);
 		end = this->_list.end();
 	}
-	std::list<unsigned int>::iterator second = begin;
+	std::list<unsigned int>::iterator first = this->_list.begin();
+	std::list<unsigned int>::iterator second = first;
 	second++;
 	while (second != end) {
-		if (*begin < *second) {
+		if (*first < *second) {
 			A.push_back(*second);
-			B.push_back(*begin);
+			B.push_back(*first);
 		} else {
-			A.push_back(*begin);
+			A.push_back(*first);
 			B.push_back(*second);
 		}
-		begin = ++second;
-		second = begin;
-		second++;
+		first = second;
+		++second;
+		if (second == end)
+			break;
+		++second;
 	}
 	if (hasImp)
 		A.push_back(imp);
