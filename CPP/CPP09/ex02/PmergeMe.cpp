@@ -151,8 +151,8 @@ void	PmergeMe::sortList() {
 			A.push_back(*first);
 			B.push_back(*second);
 		}
-		first = second;
 		++second;
+		first = second;
 		if (second == end)
 			break;
 		++second;
