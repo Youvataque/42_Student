@@ -8,6 +8,9 @@ set -eu
 : "${WP_ROOT_USER:?missing}"
 : "${WP_ROOT_PASSWORD:?missing}"
 : "${WP_ROOT_EMAIL:?missing}"
+: "${WP_EDITOR_USER:?missing}"
+: "${WP_EDITOR_PASSWORD:?missing}"
+: "${WP_EDITOR_EMAIL:?missing}"
 : "${DOMAIN_NAME:?missing}"
 
 WP_PATH=/var/www/html
@@ -34,6 +37,14 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
     --url="https://${DOMAIN_NAME}" --title="Inception" \
     --admin_user="$WP_ROOT_USER" --admin_password="$WP_ROOT_PASSWORD" --admin_email="$WP_ROOT_EMAIL" --skip-email
 fi
+
+echo "[wp] creating wordpress editor user..."
+wp user create --allow-root --path="$WP_PATH" \
+  "$WP_EDITOR_USER" "$WP_EDITOR_EMAIL" --user_pass="$WP_EDITOR_PASSWORD" || true
+
+echo "[wp] adding administrator role to editor user..."
+wp user add-role --allow-root --path="$WP_PATH" \
+  "$WP_EDITOR_USER" administrator || true
 
 echo "[wp] starting php-fpm..."
 exec "$@"

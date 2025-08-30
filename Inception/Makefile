@@ -1,8 +1,9 @@
-COMPOSE = docker-compose -f srcs/docker-compose.yml
+COMPOSE = ./load-env.sh
 
 .PHONY: up down build start stop logs ps clean fclean re
 
 up:
+	./setup-volumes.sh
 	$(COMPOSE) up -d --build
 
 down:
