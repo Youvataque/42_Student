@@ -1,9 +1,9 @@
-COMPOSE = ./load-env.sh
+COMPOSE = ./srcs/requirements/tools/load-env.sh
 
 .PHONY: up down build start stop logs ps clean fclean re
 
 up:
-	./setup-volumes.sh
+	./srcs/requirements/tools/setup-volumes.sh
 	$(COMPOSE) up -d --build
 
 down:
