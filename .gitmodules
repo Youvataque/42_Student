@@ -4,3 +4,6 @@
 [submodule "cub3d"]
 	path = cub3d
 	url = https://github.com/Youvataque/cub3d.git
+[submodule "ft_irc"]
+	path = ft_irc
+	url = https://github.com/Bourdon0812/ft_irc
